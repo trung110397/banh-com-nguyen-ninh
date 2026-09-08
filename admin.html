@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Quản trị sản phẩm</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <header class="dau-trang-admin">
+
+        <div>
+            <h1>Quản trị cửa hàng</h1>
+            <p>Bánh cốm Nguyên Ninh</p>
+        </div>
+
+        <a href="index.html">
+            Xem website
+        </a>
+
+    </header>
+
+    <main class="noi-dung-admin">
+
+        <!-- PHẦN ĐĂNG NHẬP -->
+
+        <section
+            id="khu-vuc-dang-nhap"
+            class="khung-admin"
+        >
+
+            <h2>Đăng nhập quản trị</h2>
+
+            <form id="form-dang-nhap">
+
+                <label for="email-admin">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email-admin"
+                    placeholder="Nhập email quản trị"
+                    autocomplete="email"
+                    required
+                >
+
+                <label for="mat-khau-admin">
+                    Mật khẩu
+                </label>
+
+                <input
+                    type="password"
+                    id="mat-khau-admin"
+                    placeholder="Nhập mật khẩu"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit">
+                    Đăng nhập
+                </button>
+
+            </form>
+
+            <p id="thong-bao-dang-nhap"></p>
+
+        </section>
+
+        <!-- PHẦN QUẢN LÝ SẢN PHẨM -->
+
+        <section
+            id="khu-vuc-quan-ly"
+            class="an"
+        >
+
+            <div class="thanh-quan-ly">
+
+                <h2>Quản lý sản phẩm</h2>
+
+                <button
+                    type="button"
+                    id="nut-dang-xuat"
+                >
+                    Đăng xuất
+                </button>
+
+            </div>
+
+            <!-- FORM THÊM SẢN PHẨM -->
+
+            <section class="khung-admin">
+
+                <h2>Thêm sản phẩm mới</h2>
+
+                <form id="form-san-pham">
+
+                    <label for="ten-san-pham">
+                        Tên sản phẩm
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ten-san-pham"
+                        placeholder="Ví dụ: Bánh mochi cốm"
+                        required
+                    >
+
+                    <label for="gia-san-pham">
+                        Giá bán
+                    </label>
+
+                    <input
+                        type="number"
+                        id="gia-san-pham"
+                        min="0"
+                        placeholder="Ví dụ: 60000"
+                        required
+                    >
+
+                    <label for="so-banh">
+                        Số bánh trong một phần
+                    </label>
+
+                    <input
+                        type="number"
+                        id="so-banh"
+                        min="1"
+                        placeholder="Ví dụ: 10"
+                        required
+                    >
+
+                    <label for="mo-ta-san-pham">
+                        Mô tả
+                    </label>
+
+                    <textarea
+                        id="mo-ta-san-pham"
+                        rows="4"
+                        placeholder="Nhập mô tả sản phẩm"
+                        required
+                    ></textarea>
+
+                    <label for="anh-san-pham">
+                        Chọn ảnh
+                    </label>
+
+                    <input
+                        type="file"
+                        id="anh-san-pham"
+                        accept="image/jpeg, image/png, image/webp"
+                        required
+                    >
+
+                    <img
+                        id="anh-xem-truoc"
+                        class="an"
+                        src=""
+                        alt="Ảnh xem trước"
+                    >
+
+                    <button type="submit">
+                        Thêm sản phẩm
+                    </button>
+
+                </form>
+
+                <p id="thong-bao-san-pham"></p>
+
+            </section>
+
+            <!-- DANH SÁCH QUẢN LÝ -->
+
+            <section class="khung-admin">
+                        
+                <h2>Danh sách sản phẩm</h2>
+
+                <div id="danh-sach-quan-ly">
+                    <p>Chưa có dữ liệu sản phẩm.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
