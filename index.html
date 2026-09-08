@@ -18,7 +18,14 @@
 
     <!-- THANH MENU -->
 
-    <nav style="background-color: #176b3a; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000;">
+    <nav class="menu">
+
+        <a
+            href="san-pham.html"
+            style="color: white; margin: 0 12px; text-decoration: none; font-weight: bold;"
+        >
+            Sản phẩm
+        </a>
 
         <a
             href="#banh-com"
@@ -46,19 +53,50 @@
             style="color: white; margin: 0 12px; text-decoration: none; font-weight: bold;"
         >
             🛒 Giỏ hàng
+            (<span id="so-san-pham-trong-gio">0</span>)
         </a>
+
+        <button
+            id="nut-doi-giao-dien"
+            onclick="doiGiaoDien()"
+            aria-label="Đổi chế độ sáng tối"
+        >
+            🌙
+        </button>
 
     </nav>
 
-    <!-- NỘI DUNG TRANG -->
+    <!-- NỘI DUNG CHÍNH -->
 
-    <div style="text-align: center; background-color: #fff8e7; min-height: 100vh; padding: 20px 0 30px; font-family: Arial, sans-serif;">
+    <div
+        class="trang-chinh"
+        style="text-align: center; background-color: #fff8e7; min-height: 100vh; padding-bottom: 30px; font-family: Arial, sans-serif;"
+    >
 
-        <h1 style="color: #176b3a;">
-            Bánh cốm Nguyên Ninh
-        </h1>
+        <!-- ẢNH BÌA -->
 
-        <p>Bánh thơm ngon, giao hàng tại Hà Nội.</p>
+        <section class="anh-bia">
+
+            <div class="noi-dung-anh-bia">
+
+                <h1>Bánh cốm Nguyên Ninh</h1>
+
+                <p>
+                    Hương vị truyền thống – mềm dẻo, thơm ngon
+                </p>
+
+                <a
+                    href="#banh-com"
+                    class="nut-xem-san-pham"
+                >
+                    Xem sản phẩm
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- ĐẶC ĐIỂM -->
 
         <h2>Đặc điểm sản phẩm</h2>
 
@@ -76,7 +114,10 @@
 
         <!-- BA ẢNH BÁNH CỐM -->
 
-        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; width: 650px; max-width: 90%; margin: auto;">
+        <div
+            class="bo-anh-banh-com"
+            style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; width: 650px; max-width: 90%; margin: auto;"
+        >
 
             <img
                 src="banh-com.jpg"
@@ -102,13 +143,14 @@
             Bánh cốm thơm ngon, mềm dẻo và phù hợp làm quà.
         </p>
 
-        <!-- GIÁ VÀ SỐ LƯỢNG BÁNH CỐM -->
+        <!-- GIÁ BÁNH CỐM -->
 
-        <div style="box-sizing: border-box; background-color: white; width: 400px; max-width: 90%; margin: 20px auto; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px #cccccc;">
+        <div
+            class="hop-gia"
+            style="box-sizing: border-box; background-color: white; width: 400px; max-width: 90%; margin: 20px auto; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px #cccccc;"
+        >
 
-            <h2 style="color: #176b3a;">
-                Giá bán
-            </h2>
+            <h2 style="color: #176b3a;">Giá bán</h2>
 
             <p>
                 10 bánh nhỏ:
@@ -159,6 +201,7 @@
 
             <p>
                 Tổng tiền:
+
                 <strong
                     id="tong-tien-banh-com"
                     style="color: #d35400;"
@@ -181,6 +224,7 @@
         <br>
 
         <a
+            class="nut-dat-hang"
             href="https://www.facebook.com/profile.php?id=61591610027403"
             target="_blank"
             style="display: inline-block; background-color: #1877f2; color: white; padding: 12px 24px; border-radius: 8px; font-size: 16px; text-decoration: none;"
@@ -206,13 +250,14 @@
             Bánh mềm dẻo, thơm ngon, phù hợp dâng lễ và làm quà.
         </p>
 
-        <!-- GIÁ VÀ SỐ LƯỢNG BÁNH XU XÊ -->
+        <!-- GIÁ BÁNH XU XÊ -->
 
-        <div style="box-sizing: border-box; background-color: white; width: 400px; max-width: 90%; margin: 20px auto; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px #cccccc;">
+        <div
+            class="hop-gia"
+            style="box-sizing: border-box; background-color: white; width: 400px; max-width: 90%; margin: 20px auto; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px #cccccc;"
+        >
 
-            <h2 style="color: #176b3a;">
-                Giá bán
-            </h2>
+            <h2 style="color: #176b3a;">Giá bán</h2>
 
             <p>
                 10 bánh:
@@ -236,6 +281,7 @@
 
             <p>
                 Tổng tiền:
+
                 <strong
                     id="tong-tien-xu-xe"
                     style="color: #d35400;"
@@ -258,6 +304,7 @@
         <br>
 
         <a
+            class="nut-dat-hang"
             href="https://www.facebook.com/profile.php?id=61591610027403"
             target="_blank"
             style="display: inline-block; background-color: #1877f2; color: white; padding: 12px 24px; border-radius: 8px; font-size: 16px; text-decoration: none;"
@@ -291,8 +338,56 @@
                 </strong>
             </p>
 
+            <!-- FORM ĐẶT HÀNG -->
+
+            <div class="form-dat-hang">
+
+                <h2>Thông tin đặt hàng</h2>
+
+                <label for="ten-khach-hang">
+                    Họ và tên
+                </label>
+
+                <input
+                    type="text"
+                    id="ten-khach-hang"
+                    placeholder="Nhập họ và tên"
+                >
+
+                <label for="so-dien-thoai">
+                    Số điện thoại
+                </label>
+
+                <input
+                    type="tel"
+                    id="so-dien-thoai"
+                    placeholder="Nhập số điện thoại"
+                >
+
+                <label for="dia-chi-khach-hang">
+                    Địa chỉ nhận hàng
+                </label>
+
+                <textarea
+                    id="dia-chi-khach-hang"
+                    rows="3"
+                    placeholder="Nhập địa chỉ tại Hà Nội"
+                ></textarea>
+
+                <label for="ghi-chu">
+                    Ghi chú
+                </label>
+
+                <textarea
+                    id="ghi-chu"
+                    rows="2"
+                    placeholder="Ví dụ: thời gian muốn nhận bánh"
+                ></textarea>
+
+            </div>
+
             <button
-                onclick="saoChepDonHang()"
+                onclick="saoChepDonHangDayDu()"
                 style="background-color: #176b3a; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin: 5px;"
             >
                 📋 Sao chép đơn hàng
@@ -311,9 +406,7 @@
 
         <p id="lien-he" style="margin-top: 30px;">
 
-            <strong>
-                Điện thoại đặt hàng:
-            </strong>
+            <strong>Điện thoại đặt hàng:</strong>
 
             <a
                 href="tel:0985868317"
@@ -331,6 +424,84 @@
         </p>
 
     </div>
+
+    <!-- CHÂN TRANG -->
+
+    <footer class="chan-trang">
+
+        <div class="noi-dung-chan-trang">
+
+            <div>
+                <h3>Bánh cốm Nguyên Ninh</h3>
+                <p>Hương vị truyền thống Hà Nội</p>
+            </div>
+
+            <div>
+                <h3>Liên hệ</h3>
+
+                <p>
+                    Điện thoại:
+                    <a href="tel:0985868317">
+                        0985868317
+                    </a>
+                </p>
+
+                <p>Giao hàng tại Hà Nội</p>
+            </div>
+
+            <div>
+                <h3>Đặt hàng</h3>
+
+                <a
+                    href="https://www.facebook.com/profile.php?id=61591610027403"
+                    target="_blank"
+                >
+                    Trang Facebook
+                </a>
+            </div>
+
+        </div>
+
+        <p class="ban-quyen">
+            © 2026 Bánh cốm Nguyên Ninh
+        </p>
+
+    </footer>
+
+    <!-- CỬA SỔ PHÓNG TO ẢNH -->
+
+    <div
+        id="cua-so-anh"
+        class="cua-so-anh"
+        onclick="dongAnh()"
+    >
+
+        <button
+            class="nut-dong-anh"
+            onclick="dongAnh()"
+            aria-label="Đóng ảnh"
+        >
+            ×
+        </button>
+
+        <img
+            id="anh-phong-to"
+            src=""
+            alt="Ảnh sản phẩm phóng to"
+            onclick="event.stopPropagation()"
+        >
+
+    </div>
+
+    <!-- NÚT LÊN ĐẦU TRANG -->
+
+    <button
+        id="nut-len-dau"
+        onclick="lenDauTrang()"
+        aria-label="Lên đầu trang"
+    >
+        ↑
+    </button>
 
     <script src="script.js"></script>
 

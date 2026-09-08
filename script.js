@@ -79,6 +79,12 @@ function hienThiGioHang() {
 
     tongGioHang.textContent =
         tongTien.toLocaleString("vi-VN") + " đồng";
+        const tongSoLuong = gioHang.reduce(function (tong, sanPham) {
+    return tong + sanPham.soLuong;
+}, 0);
+
+document.getElementById("so-san-pham-trong-gio").textContent =
+    tongSoLuong;s
 }
 function themBanhComVaoGio() {
     const oLoaiBanh = document.getElementById("loai-banh-com");
@@ -126,6 +132,9 @@ function xoaGioHang() {
 
     document.getElementById("tong-gio-hang").textContent =
         "0 đồng";
+       
+   document.getElementById("so-san-pham-trong-gio").textContent =
+    "0";
 }
 function saoChepDonHang() {
     if (gioHang.length === 0) {
@@ -168,4 +177,175 @@ function saoChepDonHang() {
 
         alert("Đã sao chép đơn hàng.");
     }
+}
+function saoChepDonHangDayDu() {
+    const tenKhachHang =
+        document.getElementById("ten-khach-hang").value.trim();
+
+    const soDienThoai =
+        document.getElementById("so-dien-thoai").value.trim();
+
+    const diaChi =
+        document.getElementById("dia-chi-khach-hang").value.trim();
+
+    const ghiChu =
+        document.getElementById("ghi-chu").value.trim();
+
+    if (gioHang.length === 0) {
+        alert("Vui lòng thêm sản phẩm vào giỏ hàng.");
+        return;
+    }
+
+    if (tenKhachHang === "" || soDienThoai === "" || diaChi === "") {
+        alert("Vui lòng nhập họ tên, số điện thoại và địa chỉ.");
+        return;
+    }
+
+    let noiDung = "ĐƠN HÀNG BÁNH NGUYÊN NINH\n\n";
+
+    noiDung += "Khách hàng: " + tenKhachHang + "\n";
+    noiDung += "Điện thoại: " + soDienThoai + "\n";
+    noiDung += "Địa chỉ: " + diaChi + "\n";
+
+    if (ghiChu !== "") {
+        noiDung += "Ghi chú: " + ghiChu + "\n";
+    }
+
+    noiDung += "\nSẢN PHẨM\n";
+
+    let tongTien = 0;
+
+    gioHang.forEach(function (sanPham) {
+        noiDung +=
+            "- " +
+            sanPham.ten +
+            ": " +
+            sanPham.soLuong +
+            " phần – " +
+            sanPham.thanhTien.toLocaleString("vi-VN") +
+            " đồng\n";
+
+        tongTien += sanPham.thanhTien;
+    });
+
+    noiDung +=
+        "\nTổng cộng: " +
+        tongTien.toLocaleString("vi-VN") +
+        " đồng";
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(noiDung).then(function () {
+            alert("Đã sao chép đầy đủ đơn hàng.");
+        });
+    } else {
+        const oTam = document.createElement("textarea");
+        oTam.value = noiDung;
+        document.body.appendChild(oTam);
+        oTam.select();
+        document.execCommand("copy");
+        document.body.removeChild(oTam);
+
+        alert("Đã sao chép đầy đủ đơn hàng.");
+    }
+}
+function moAnh(duongDanAnh) {
+    const cuaSoAnh = document.getElementById("cua-so-anh");
+    const anhPhongTo = document.getElementById("anh-phong-to");
+
+    anhPhongTo.src = duongDanAnh;
+    cuaSoAnh.classList.add("hien");
+
+    document.body.style.overflow = "hidden";
+}
+
+function dongAnh() {
+    const cuaSoAnh = document.getElementById("cua-so-anh");
+    const anhPhongTo = document.getElementById("anh-phong-to");
+
+    cuaSoAnh.classList.remove("hien");
+    anhPhongTo.src = "";
+
+    document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function (suKien) {
+    if (suKien.key === "Escape") {
+        dongAnh();
+    }
+});
+const danhSachAnhSanPham = document.querySelectorAll(
+    ".bo-anh-banh-com img, #banh-xu-xe + img"
+);
+
+danhSachAnhSanPham.forEach(function (anh) {
+    anh.style.cursor = "zoom-in";
+
+    anh.addEventListener("click", function () {
+        moAnh(anh.src);
+    });
+});
+const nutLenDau = document.getElementById("nut-len-dau");
+
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 400) {
+        nutLenDau.classList.add("hien");
+    } else {
+        nutLenDau.classList.remove("hien");
+    }
+});
+
+function lenDauTrang() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}   
+const cacPhanTuHieuUng = document.querySelectorAll(
+    ".hop-gia, .bo-anh-banh-com, #banh-com, #banh-xu-xe, #gio-hang, .form-dat-hang"
+);
+
+if ("IntersectionObserver" in window) {
+    const boTheoDoi = new IntersectionObserver(
+        function (danhSach) {
+            danhSach.forEach(function (muc) {
+                if (muc.isIntersecting) {
+                    muc.target.classList.add("xuat-hien");
+                    boTheoDoi.unobserve(muc.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+    cacPhanTuHieuUng.forEach(function (phanTu) {
+        phanTu.classList.add("hieu-ung-cuon");
+        boTheoDoi.observe(phanTu);
+    });
+}
+const nutDoiGiaoDien =
+    document.getElementById("nut-doi-giao-dien");
+
+function doiGiaoDien() {
+    document.body.classList.toggle("che-do-toi");
+
+    const dangToi =
+        document.body.classList.contains("che-do-toi");
+
+    if (dangToi) {
+        nutDoiGiaoDien.textContent = "☀️";
+        localStorage.setItem("giao-dien", "toi");
+    } else {
+        nutDoiGiaoDien.textContent = "🌙";
+        localStorage.setItem("giao-dien", "sang");
+    }
+}
+
+const giaoDienDaLuu =
+    localStorage.getItem("giao-dien");
+
+if (giaoDienDaLuu === "toi") {
+    document.body.classList.add("che-do-toi");
+    nutDoiGiaoDien.textContent = "☀️";
 }

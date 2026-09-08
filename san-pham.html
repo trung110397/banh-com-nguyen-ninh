@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sản phẩm – Bánh cốm Nguyên Ninh</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="margin: 0;">
+
+    <!-- MENU -->
+
+    <nav class="menu">
+
+        <a
+            href="index.html"
+            style="color: white; text-decoration: none; font-weight: bold;"
+        >
+            Trang chủ
+        </a>
+
+        <a
+            href="san-pham.html"
+            style="color: white; text-decoration: none; font-weight: bold;"
+        >
+            Sản phẩm
+        </a>
+
+        <a
+            href="index.html#gio-hang"
+            style="color: white; text-decoration: none; font-weight: bold;"
+        >
+            🛒 Giỏ hàng
+        </a>
+
+        <a
+            href="index.html#lien-he"
+            style="color: white; text-decoration: none; font-weight: bold;"
+        >
+            Liên hệ
+        </a>
+
+        <button
+            id="nut-doi-giao-dien"
+            onclick="doiGiaoDien()"
+            aria-label="Đổi chế độ sáng tối"
+        >
+            🌙
+        </button>
+
+    </nav>
+
+    <!-- TRANG SẢN PHẨM -->
+
+    <main class="trang-san-pham">
+
+        <section class="tieu-de-san-pham">
+
+            <h1>Sản phẩm của chúng tôi</h1>
+
+            <p>
+                Những món bánh thơm ngon, phù hợp làm quà và dâng lễ.
+            </p>
+
+        </section>
+
+        <!-- DANH SÁCH SẢN PHẨM -->
+
+        <section class="luoi-san-pham">
+
+            <!-- BÁNH CỐM -->
+
+            <article class="the-san-pham">
+
+                <img
+                    src="banh-com.jpg"
+                    alt="Bánh cốm Nguyên Ninh"
+                >
+
+                <div class="noi-dung-the">
+
+                    <h2>Bánh cốm Nguyên Ninh</h2>
+
+                    <p>
+                        Bánh mềm dẻo, hương cốm thơm dịu.
+                    </p>
+
+                    <p class="gia-the">
+                        Từ 60.000 đồng
+                    </p>
+
+                    <a
+                        href="index.html#banh-com"
+                        class="nut-xem-chi-tiet"
+                    >
+                        Xem chi tiết
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- BÁNH XU XÊ -->
+
+            <article class="the-san-pham">
+
+                <img
+                    src="banh-xu-xe.jpg"
+                    alt="Bánh xu xê"
+                >
+
+                <div class="noi-dung-the">
+
+                    <h2>Bánh xu xê</h2>
+
+                    <p>
+                        Bánh mềm dẻo, phù hợp dâng lễ và làm quà.
+                    </p>
+
+                    <p class="gia-the">
+                        60.000 đồng/10 bánh
+                    </p>
+
+                    <a
+                        href="index.html#banh-xu-xe"
+                        class="nut-xem-chi-tiet"
+                    >
+                        Xem chi tiết
+                    </a>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- CHÂN TRANG -->
+
+    <footer class="chan-trang">
+
+        <div class="noi-dung-chan-trang">
+
+            <div>
+                <h3>Bánh cốm Nguyên Ninh</h3>
+                <p>Hương vị truyền thống Hà Nội</p>
+            </div>
+
+            <div>
+                <h3>Liên hệ</h3>
+
+                <p>
+                    Điện thoại:
+                    <a href="tel:0985868317">
+                        0985868317
+                    </a>
+                </p>
+
+                <p>Giao hàng tại Hà Nội</p>
+            </div>
+
+            <div>
+                <h3>Đặt hàng</h3>
+
+                <a
+                    href="https://www.facebook.com/profile.php?id=61591610027403"
+                    target="_blank"
+                >
+                    Trang Facebook
+                </a>
+            </div>
+
+        </div>
+
+        <p class="ban-quyen">
+            © 2026 Bánh cốm Nguyên Ninh
+        </p>
+
+    </footer>
+
+    <!-- NÚT LÊN ĐẦU -->
+
+    <button
+        id="nut-len-dau"
+        onclick="lenDauTrang()"
+        aria-label="Lên đầu trang"
+    >
+        ↑
+    </button>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
