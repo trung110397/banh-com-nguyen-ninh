@@ -1,0 +1,17 @@
+h2 {
+    color: #176b3a;
+}
+p {
+    line-height: 1.6;
+}   
+button {
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+}
+img {
+    box-shadow: 0 4px 12px #aaaaaa;
+}
