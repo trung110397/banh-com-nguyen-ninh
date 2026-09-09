@@ -130,8 +130,8 @@ formDangNhap.addEventListener(
             return;
         }
 
-        thongBaoDangNhap.textContent = "";
         formDangNhap.reset();
+        thongBaoDangNhap.textContent = "";
 
         hienTrangQuanLy();
     }
@@ -200,7 +200,7 @@ nutDangXuat.addEventListener(
 
 
 // ========================================
-// 7. KIỂM TRA PHIÊN ĐĂNG NHẬP
+// 7. KIỂM TRA ĐĂNG NHẬP
 // ========================================
 
 async function kiemTraDangNhap() {
@@ -297,11 +297,10 @@ formSanPham.addEventListener(
                 .value
         );
 
-        const soBanh = Number(
-            document
-                .getElementById("so-banh")
-                .value
-        );
+        const quyCach = document
+            .getElementById("quy-cach")
+            .value
+            .trim();
 
         const moTa = document
             .getElementById("mo-ta-san-pham")
@@ -328,18 +327,13 @@ formSanPham.addEventListener(
             return;
         }
 
-        if (
-            !Number.isInteger(soBanh) ||
-            soBanh <= 0
-        ) {
+        if (!quyCach) {
             hienLoiSanPham(
-                "Số bánh phải là số nguyên lớn hơn 0."
+                "Vui lòng nhập số lượng hoặc quy cách."
             );
             return;
         }
 
-        // Khi thêm mới phải chọn ảnh.
-        // Khi sửa có thể giữ nguyên ảnh cũ.
         if (!idSua && !tepAnh) {
             hienLoiSanPham(
                 "Vui lòng chọn ảnh sản phẩm."
@@ -376,13 +370,13 @@ formSanPham.addEventListener(
         const duLieuSanPham = {
             ten: ten,
             gia: gia,
-            so_banh: soBanh,
+            quy_cach: quyCach,
             mo_ta: moTa
         };
 
         let duongDanAnhMoi = null;
 
-        // Tải ảnh mới nếu người dùng đã chọn ảnh
+        // Tải ảnh mới nếu đã chọn ảnh
         if (tepAnh) {
             const duoiAnh =
                 layDuoiAnh(tepAnh);
@@ -395,15 +389,13 @@ formSanPham.addEventListener(
                         .toString(36)
                         .slice(2);
 
-            const tenAnhMoi =
+            duongDanAnhMoi =
+                "san-pham/" +
                 Date.now() +
                 "-" +
                 maNgauNhien +
                 "." +
                 duoiAnh;
-
-            duongDanAnhMoi =
-                "san-pham/" + tenAnhMoi;
 
             const { error: loiTaiAnh } =
                 await supabaseClient.storage
@@ -440,10 +432,9 @@ formSanPham.addEventListener(
         }
 
         let loiLuu = null;
-        let coDuLieuDuocSua = true;
+        let daSuaDuLieu = true;
 
         if (idSua) {
-            // Cập nhật sản phẩm cũ
             const {
                 data: duLieuCapNhat,
                 error
@@ -455,11 +446,10 @@ formSanPham.addEventListener(
 
             loiLuu = error;
 
-            coDuLieuDuocSua =
+            daSuaDuLieu =
                 Array.isArray(duLieuCapNhat) &&
                 duLieuCapNhat.length > 0;
         } else {
-            // Thêm sản phẩm mới
             const { error } =
                 await supabaseClient
                     .from("san_pham")
@@ -473,9 +463,8 @@ formSanPham.addEventListener(
 
         if (
             loiLuu ||
-            (idSua && !coDuLieuDuocSua)
+            (idSua && !daSuaDuLieu)
         ) {
-            // Xóa ảnh mới nếu lưu dữ liệu thất bại
             if (duongDanAnhMoi) {
                 await supabaseClient.storage
                     .from("anh-san-pham")
@@ -487,7 +476,7 @@ formSanPham.addEventListener(
             if (
                 idSua &&
                 !loiLuu &&
-                !coDuLieuDuocSua
+                !daSuaDuLieu
             ) {
                 hienLoiSanPham(
                     "Không sửa được sản phẩm. Hãy kiểm tra quyền UPDATE trong Supabase."
@@ -531,7 +520,6 @@ formSanPham.addEventListener(
 
 function batDauLuuSanPham(noiDung) {
     nutLuuSanPham.disabled = true;
-
     nutLuuSanPham.textContent =
         "Đang xử lý...";
 
@@ -544,14 +532,13 @@ function batDauLuuSanPham(noiDung) {
 
 function ketThucLuuSanPham() {
     nutLuuSanPham.disabled = false;
-
     nutLuuSanPham.textContent =
         "💾 Lưu sản phẩm";
 }
 
 
 // ========================================
-// 11. LẤY ĐUÔI ẢNH
+// 11. XỬ LÝ ẢNH
 // ========================================
 
 function layDuoiAnh(tepAnh) {
@@ -565,11 +552,6 @@ function layDuoiAnh(tepAnh) {
 
     return "jpg";
 }
-
-
-// ========================================
-// 12. XÓA ẢNH XEM TRƯỚC
-// ========================================
 
 function xoaAnhXemTruoc() {
     if (duongDanAnhTam) {
@@ -586,7 +568,7 @@ function xoaAnhXemTruoc() {
 
 
 // ========================================
-// 13. HIỂN THỊ LỖI
+// 12. HIỂN THỊ LỖI
 // ========================================
 
 function hienLoiSanPham(noiDung) {
@@ -596,11 +578,6 @@ function hienLoiSanPham(noiDung) {
     thongBaoSanPham.style.color =
         "#c0392b";
 }
-
-
-// ========================================
-// 14. LÀM SẠCH VĂN BẢN
-// ========================================
 
 function lamSachVanBan(noiDung) {
     const oTam =
@@ -614,7 +591,7 @@ function lamSachVanBan(noiDung) {
 
 
 // ========================================
-// 15. TẢI DANH SÁCH SẢN PHẨM
+// 13. TẢI DANH SÁCH
 // ========================================
 
 async function taiDanhSachSanPham() {
@@ -652,15 +629,14 @@ async function taiDanhSachSanPham() {
 
     danhSachQuanLy.innerHTML =
         data.map(function (sanPham) {
-            const trangThai =
-                sanPham.dang_ban
-                    ? "Đang bán"
-                    : "Đã ẩn";
-
-            const chuNutAnHien =
-                sanPham.dang_ban
-                    ? "🙈 Ẩn sản phẩm"
-                    : "👁️ Hiện sản phẩm";
+            const quyCach =
+                sanPham.quy_cach ||
+                (
+                    sanPham.so_banh
+                        ? sanPham.so_banh +
+                          " bánh"
+                        : "Chưa có quy cách"
+                );
 
             return `
                 <article class="san-pham-admin">
@@ -697,15 +673,18 @@ async function taiDanhSachSanPham() {
                                     "vi-VN"
                                 )}
                                 đồng/
-                                ${Number(
-                                    sanPham.so_banh
+                                ${lamSachVanBan(
+                                    quyCach
                                 )}
-                                bánh
                             </strong>
                         </p>
 
                         <p class="trang-thai-san-pham">
-                            ${trangThai}
+                            ${
+                                sanPham.dang_ban
+                                    ? "Đang bán"
+                                    : "Đã ẩn"
+                            }
                         </p>
 
                         <div class="cac-nut-san-pham">
@@ -724,7 +703,11 @@ async function taiDanhSachSanPham() {
                                 data-id="${sanPham.id}"
                                 data-dang-ban="${sanPham.dang_ban}"
                             >
-                                ${chuNutAnHien}
+                                ${
+                                    sanPham.dang_ban
+                                        ? "🙈 Ẩn sản phẩm"
+                                        : "👁️ Hiện sản phẩm"
+                                }
                             </button>
 
                         </div>
@@ -742,11 +725,11 @@ async function taiDanhSachSanPham() {
 
 
 // ========================================
-// 16. THỐNG KÊ
+// 14. THỐNG KÊ
 // ========================================
 
 function capNhatThongKe(danhSach) {
-    const tongSanPham =
+    const tong =
         danhSach.length;
 
     const dangBan =
@@ -758,50 +741,35 @@ function capNhatThongKe(danhSach) {
             }
         ).length;
 
-    oTongSanPham.textContent =
-        tongSanPham;
-
-    oSanPhamDangBan.textContent =
-        dangBan;
-
+    oTongSanPham.textContent = tong;
+    oSanPhamDangBan.textContent = dangBan;
     oSanPhamDangAn.textContent =
-        tongSanPham - dangBan;
+        tong - dangBan;
 }
 
 
 // ========================================
-// 17. NÚT SỬA
+// 15. SỬA SẢN PHẨM
 // ========================================
 
 function ganSuKienNutSua() {
-    const cacNutSua =
-        document.querySelectorAll(
-            ".nut-sua"
-        );
-
-    cacNutSua.forEach(function (nut) {
-        nut.addEventListener(
-            "click",
-            function () {
-                suaSanPham(
-                    nut.dataset.id
-                );
-            }
-        );
-    });
+    document
+        .querySelectorAll(".nut-sua")
+        .forEach(function (nut) {
+            nut.addEventListener(
+                "click",
+                function () {
+                    suaSanPham(
+                        nut.dataset.id
+                    );
+                }
+            );
+        });
 }
-
-
-// ========================================
-// 18. ĐƯA SẢN PHẨM VÀO BIỂU MẪU SỬA
-// ========================================
 
 async function suaSanPham(id) {
     thongBaoSanPham.textContent =
         "Đang lấy thông tin sản phẩm...";
-
-    thongBaoSanPham.style.color =
-        "#555555";
 
     const { data: sanPham, error } =
         await supabaseClient
@@ -819,6 +787,14 @@ async function suaSanPham(id) {
         return;
     }
 
+    const quyCach =
+        sanPham.quy_cach ||
+        (
+            sanPham.so_banh
+                ? sanPham.so_banh + " bánh"
+                : ""
+        );
+
     document
         .getElementById("ten-san-pham")
         .value =
@@ -830,9 +806,9 @@ async function suaSanPham(id) {
             sanPham.gia ?? "";
 
     document
-        .getElementById("so-banh")
+        .getElementById("quy-cach")
         .value =
-            sanPham.so_banh ?? "";
+            quyCach;
 
     document
         .getElementById("mo-ta-san-pham")
@@ -854,7 +830,7 @@ async function suaSanPham(id) {
     oChonAnh.value = "";
 
     thongBaoSanPham.textContent =
-        "Đang sửa sản phẩm. Không chọn ảnh mới nếu muốn giữ ảnh cũ.";
+        "Đang sửa sản phẩm. Để trống ảnh nếu muốn giữ ảnh cũ.";
 
     thongBaoSanPham.style.color =
         "#176b3a";
@@ -867,7 +843,7 @@ async function suaSanPham(id) {
 
 
 // ========================================
-// 19. HỦY SỬA
+// 16. HỦY SỬA
 // ========================================
 
 function huyCheDoSua() {
@@ -888,85 +864,71 @@ nutHuySua.addEventListener(
     "click",
     function () {
         huyCheDoSua();
-
-        formSanPham.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
     }
 );
 
 
 // ========================================
-// 20. ẨN HOẶC HIỆN SẢN PHẨM
+// 17. ẨN/HIỆN SẢN PHẨM
 // ========================================
 
 function ganSuKienNutAnHien() {
-    const cacNutAnHien =
-        document.querySelectorAll(
+    document
+        .querySelectorAll(
             ".nut-an-hien"
-        );
+        )
+        .forEach(function (nut) {
+            nut.addEventListener(
+                "click",
+                async function () {
+                    const id =
+                        nut.dataset.id;
 
-    cacNutAnHien.forEach(function (nut) {
-        nut.addEventListener(
-            "click",
-            async function () {
-                const id =
-                    nut.dataset.id;
+                    const dangBan =
+                        nut.dataset
+                            .dangBan ===
+                        "true";
 
-                const dangBanHienTai =
-                    nut.dataset.dangBan ===
-                    "true";
-
-                const trangThaiMoi =
-                    !dangBanHienTai;
-
-                nut.disabled = true;
-                nut.textContent =
-                    "Đang cập nhật...";
-
-                const {
-                    data: duLieuCapNhat,
-                    error
-                } = await supabaseClient
-                    .from("san_pham")
-                    .update({
-                        dang_ban:
-                            trangThaiMoi
-                    })
-                    .eq("id", id)
-                    .select("id");
-
-                if (
-                    error ||
-                    !duLieuCapNhat ||
-                    duLieuCapNhat.length === 0
-                ) {
-                    alert(
-                        error
-                            ? "Không cập nhật được: " +
-                              error.message
-                            : "Không cập nhật được. Hãy kiểm tra quyền UPDATE."
-                    );
-
-                    nut.disabled = false;
+                    nut.disabled = true;
                     nut.textContent =
-                        dangBanHienTai
-                            ? "🙈 Ẩn sản phẩm"
-                            : "👁️ Hiện sản phẩm";
+                        "Đang cập nhật...";
 
-                    return;
+                    const {
+                        data,
+                        error
+                    } = await supabaseClient
+                        .from("san_pham")
+                        .update({
+                            dang_ban:
+                                !dangBan
+                        })
+                        .eq("id", id)
+                        .select("id");
+
+                    if (
+                        error ||
+                        !data ||
+                        data.length === 0
+                    ) {
+                        alert(
+                            error
+                                ? error.message
+                                : "Không có quyền cập nhật sản phẩm."
+                        );
+
+                        nut.disabled = false;
+                        return;
+                    }
+
+                    await taiDanhSachSanPham();
                 }
-
-                await taiDanhSachSanPham();
-            }
-        );
-    });
+            );
+        });
 }
 
 
 // ========================================
-// 21. TÌM KIẾM VÀ LỌC
+// 18. TÌM KIẾM VÀ LỌC
 // ========================================
 
 function boDauTiengViet(noiDung) {
@@ -991,44 +953,43 @@ function locDanhSachSanPham() {
     const trangThai =
         oLocTrangThai.value;
 
-    const cacSanPham =
-        document.querySelectorAll(
+    document
+        .querySelectorAll(
             ".san-pham-admin"
-        );
+        )
+        .forEach(function (sanPham) {
+            const ten =
+                sanPham.querySelector("h3")
+                    ?.textContent || "";
 
-    cacSanPham.forEach(function (sanPham) {
-        const ten =
-            sanPham.querySelector("h3")
-                ?.textContent || "";
+            const nutAnHien =
+                sanPham.querySelector(
+                    ".nut-an-hien"
+                );
 
-        const nutAnHien =
-            sanPham.querySelector(
-                ".nut-an-hien"
-            );
+            const dangBan =
+                nutAnHien?.dataset
+                    .dangBan === "true";
 
-        const dangBan =
-            nutAnHien?.dataset.dangBan ===
-            "true";
+            const dungTen =
+                boDauTiengViet(ten)
+                    .includes(tuKhoa);
 
-        const dungTen =
-            boDauTiengViet(ten)
-                .includes(tuKhoa);
+            let dungTrangThai = true;
 
-        let dungTrangThai = true;
+            if (trangThai === "dang-ban") {
+                dungTrangThai = dangBan;
+            }
 
-        if (trangThai === "dang-ban") {
-            dungTrangThai = dangBan;
-        }
+            if (trangThai === "dang-an") {
+                dungTrangThai = !dangBan;
+            }
 
-        if (trangThai === "dang-an") {
-            dungTrangThai = !dangBan;
-        }
-
-        sanPham.style.display =
-            dungTen && dungTrangThai
-                ? ""
-                : "none";
-    });
+            sanPham.style.display =
+                dungTen && dungTrangThai
+                    ? ""
+                    : "none";
+        });
 }
 
 oTimSanPham.addEventListener(
