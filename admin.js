@@ -2,11 +2,9 @@
 // 1. KẾT NỐI SUPABASE
 // ========================================
 
-// Thay bằng Project URL của bạn
 const SUPABASE_URL =
     "https://nfdovcuvgdmdhynhuhxy.supabase.co";
 
-// Thay bằng Publishable key của bạn
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_g4fa73qmE0k9nd9TUNTlpg_88X1DgfV";
 
@@ -39,6 +37,12 @@ const nutDangXuat =
 const formSanPham =
     document.getElementById("form-san-pham");
 
+const nutLuuSanPham =
+    document.getElementById("nut-luu-san-pham");
+
+const nutHuySua =
+    document.getElementById("nut-huy-sua");
+
 const thongBaoSanPham =
     document.getElementById("thong-bao-san-pham");
 
@@ -50,9 +54,6 @@ const anhXemTruoc =
 
 const danhSachQuanLy =
     document.getElementById("danh-sach-quan-ly");
-
-const nutHuySua =
-    document.getElementById("nut-huy-sua");
 
 const oTimSanPham =
     document.getElementById("tim-san-pham");
@@ -88,7 +89,7 @@ function hienTrangDangNhap() {
 
 
 // ========================================
-// 4. ĐĂNG NHẬP ADMIN
+// 4. ĐĂNG NHẬP
 // ========================================
 
 formDangNhap.addEventListener(
@@ -142,11 +143,11 @@ formDangNhap.addEventListener(
 // ========================================
 
 function dichLoiDangNhap(loi) {
-    const noiDungLoi =
+    const noiDung =
         String(loi).toLowerCase();
 
     if (
-        noiDungLoi.includes(
+        noiDung.includes(
             "invalid login credentials"
         )
     ) {
@@ -154,7 +155,7 @@ function dichLoiDangNhap(loi) {
     }
 
     if (
-        noiDungLoi.includes(
+        noiDung.includes(
             "email not confirmed"
         )
     ) {
@@ -238,9 +239,7 @@ oChonAnh.addEventListener(
         }
 
         if (!tepAnh) {
-            anhXemTruoc.src = "";
-            anhXemTruoc.classList.add("an");
-
+            xoaAnhXemTruoc();
             return;
         }
 
@@ -285,7 +284,7 @@ formSanPham.addEventListener(
         suKien.preventDefault();
 
         const idSua =
-            formSanPham.dataset.idSua;
+            formSanPham.dataset.idSua || "";
 
         const ten = document
             .getElementById("ten-san-pham")
@@ -316,7 +315,6 @@ formSanPham.addEventListener(
             hienLoiSanPham(
                 "Vui lòng nhập tên sản phẩm."
             );
-
             return;
         }
 
@@ -327,7 +325,6 @@ formSanPham.addEventListener(
             hienLoiSanPham(
                 "Giá sản phẩm phải lớn hơn 0."
             );
-
             return;
         }
 
@@ -338,17 +335,15 @@ formSanPham.addEventListener(
             hienLoiSanPham(
                 "Số bánh phải là số nguyên lớn hơn 0."
             );
-
             return;
         }
 
-        // Thêm mới bắt buộc phải chọn ảnh.
-        // Sửa sản phẩm được phép giữ ảnh cũ.
+        // Khi thêm mới phải chọn ảnh.
+        // Khi sửa có thể giữ nguyên ảnh cũ.
         if (!idSua && !tepAnh) {
             hienLoiSanPham(
                 "Vui lòng chọn ảnh sản phẩm."
             );
-
             return;
         }
 
@@ -359,7 +354,6 @@ formSanPham.addEventListener(
             hienLoiSanPham(
                 "Tệp đã chọn không phải là ảnh."
             );
-
             return;
         }
 
@@ -370,41 +364,25 @@ formSanPham.addEventListener(
             hienLoiSanPham(
                 "Ảnh phải nhỏ hơn 5 MB."
             );
-
             return;
         }
 
-        const nutLuu =
-            formSanPham.querySelector(
-                'button[type="submit"]'
-            );
-
-        nutLuu.disabled = true;
-
-        nutLuu.textContent =
-            idSua
-                ? "Đang cập nhật..."
-                : "Đang thêm...";
-
-        thongBaoSanPham.textContent =
+        batDauLuuSanPham(
             idSua
                 ? "Đang cập nhật sản phẩm..."
-                : "Đang tải ảnh và thêm sản phẩm...";
-
-        thongBaoSanPham.style.color =
-            "#555555";
+                : "Đang thêm sản phẩm..."
+        );
 
         const duLieuSanPham = {
             ten: ten,
             gia: gia,
             so_banh: soBanh,
-            mo_ta: moTa,
-            dang_ban: true
+            mo_ta: moTa
         };
 
         let duongDanAnhMoi = null;
 
-        // Nếu chọn ảnh mới thì tải ảnh lên Supabase
+        // Tải ảnh mới nếu người dùng đã chọn ảnh
         if (tepAnh) {
             const duoiAnh =
                 layDuoiAnh(tepAnh);
@@ -446,7 +424,7 @@ formSanPham.addEventListener(
                     loiTaiAnh.message
                 );
 
-                khoiPhucNutLuu(nutLuu);
+                ketThucLuuSanPham();
                 return;
             }
 
@@ -461,24 +439,43 @@ formSanPham.addEventListener(
                 duLieuAnh.publicUrl;
         }
 
-        let ketQua;
+        let loiLuu = null;
+        let coDuLieuDuocSua = true;
 
         if (idSua) {
-            ketQua =
-                await supabaseClient
-                    .from("san_pham")
-                    .update(duLieuSanPham)
-                    .eq("id", idSua);
+            // Cập nhật sản phẩm cũ
+            const {
+                data: duLieuCapNhat,
+                error
+            } = await supabaseClient
+                .from("san_pham")
+                .update(duLieuSanPham)
+                .eq("id", idSua)
+                .select("id");
+
+            loiLuu = error;
+
+            coDuLieuDuocSua =
+                Array.isArray(duLieuCapNhat) &&
+                duLieuCapNhat.length > 0;
         } else {
-            ketQua =
+            // Thêm sản phẩm mới
+            const { error } =
                 await supabaseClient
                     .from("san_pham")
-                    .insert(duLieuSanPham);
+                    .insert({
+                        ...duLieuSanPham,
+                        dang_ban: true
+                    });
+
+            loiLuu = error;
         }
 
-        if (ketQua.error) {
-            // Nếu không lưu được sản phẩm,
-            // xóa ảnh mới vừa tải lên
+        if (
+            loiLuu ||
+            (idSua && !coDuLieuDuocSua)
+        ) {
+            // Xóa ảnh mới nếu lưu dữ liệu thất bại
             if (duongDanAnhMoi) {
                 await supabaseClient.storage
                     .from("anh-san-pham")
@@ -487,12 +484,22 @@ formSanPham.addEventListener(
                     ]);
             }
 
-            hienLoiSanPham(
-                "Không lưu được sản phẩm: " +
-                ketQua.error.message
-            );
+            if (
+                idSua &&
+                !loiLuu &&
+                !coDuLieuDuocSua
+            ) {
+                hienLoiSanPham(
+                    "Không sửa được sản phẩm. Hãy kiểm tra quyền UPDATE trong Supabase."
+                );
+            } else {
+                hienLoiSanPham(
+                    "Không lưu được sản phẩm: " +
+                    loiLuu.message
+                );
+            }
 
-            khoiPhucNutLuu(nutLuu);
+            ketThucLuuSanPham();
             return;
         }
 
@@ -511,8 +518,7 @@ formSanPham.addEventListener(
         nutHuySua.classList.add("an");
 
         xoaAnhXemTruoc();
-
-        khoiPhucNutLuu(nutLuu);
+        ketThucLuuSanPham();
 
         await taiDanhSachSanPham();
     }
@@ -520,7 +526,32 @@ formSanPham.addEventListener(
 
 
 // ========================================
-// 10. LẤY ĐUÔI ẢNH
+// 10. TRẠNG THÁI NÚT LƯU
+// ========================================
+
+function batDauLuuSanPham(noiDung) {
+    nutLuuSanPham.disabled = true;
+
+    nutLuuSanPham.textContent =
+        "Đang xử lý...";
+
+    thongBaoSanPham.textContent =
+        noiDung;
+
+    thongBaoSanPham.style.color =
+        "#555555";
+}
+
+function ketThucLuuSanPham() {
+    nutLuuSanPham.disabled = false;
+
+    nutLuuSanPham.textContent =
+        "💾 Lưu sản phẩm";
+}
+
+
+// ========================================
+// 11. LẤY ĐUÔI ẢNH
 // ========================================
 
 function layDuoiAnh(tepAnh) {
@@ -533,17 +564,6 @@ function layDuoiAnh(tepAnh) {
     }
 
     return "jpg";
-}
-
-
-// ========================================
-// 11. KHÔI PHỤC NÚT LƯU
-// ========================================
-
-function khoiPhucNutLuu(nutLuu) {
-    nutLuu.disabled = false;
-    nutLuu.textContent =
-        "💾 Lưu sản phẩm";
 }
 
 
@@ -637,6 +657,11 @@ async function taiDanhSachSanPham() {
                     ? "Đang bán"
                     : "Đã ẩn";
 
+            const chuNutAnHien =
+                sanPham.dang_ban
+                    ? "🙈 Ẩn sản phẩm"
+                    : "👁️ Hiện sản phẩm";
+
             return `
                 <article class="san-pham-admin">
 
@@ -699,11 +724,7 @@ async function taiDanhSachSanPham() {
                                 data-id="${sanPham.id}"
                                 data-dang-ban="${sanPham.dang_ban}"
                             >
-                                ${
-                                    sanPham.dang_ban
-                                        ? "🙈 Ẩn sản phẩm"
-                                        : "👁️ Hiện sản phẩm"
-                                }
+                                ${chuNutAnHien}
                             </button>
 
                         </div>
@@ -716,20 +737,19 @@ async function taiDanhSachSanPham() {
 
     ganSuKienNutSua();
     ganSuKienNutAnHien();
-
     locDanhSachSanPham();
 }
 
 
 // ========================================
-// 16. CẬP NHẬT THỐNG KÊ
+// 16. THỐNG KÊ
 // ========================================
 
 function capNhatThongKe(danhSach) {
     const tongSanPham =
         danhSach.length;
 
-    const soSanPhamDangBan =
+    const dangBan =
         danhSach.filter(
             function (sanPham) {
                 return (
@@ -738,23 +758,19 @@ function capNhatThongKe(danhSach) {
             }
         ).length;
 
-    const soSanPhamDangAn =
-        tongSanPham -
-        soSanPhamDangBan;
-
     oTongSanPham.textContent =
         tongSanPham;
 
     oSanPhamDangBan.textContent =
-        soSanPhamDangBan;
+        dangBan;
 
     oSanPhamDangAn.textContent =
-        soSanPhamDangAn;
+        tongSanPham - dangBan;
 }
 
 
 // ========================================
-// 17. NÚT SỬA SẢN PHẨM
+// 17. NÚT SỬA
 // ========================================
 
 function ganSuKienNutSua() {
@@ -777,7 +793,7 @@ function ganSuKienNutSua() {
 
 
 // ========================================
-// 18. LẤY SẢN PHẨM ĐỂ SỬA
+// 18. ĐƯA SẢN PHẨM VÀO BIỂU MẪU SỬA
 // ========================================
 
 async function suaSanPham(id) {
@@ -832,9 +848,7 @@ async function suaSanPham(id) {
         anhXemTruoc.src =
             sanPham.anh_url;
 
-        anhXemTruoc.classList.remove(
-            "an"
-        );
+        anhXemTruoc.classList.remove("an");
     }
 
     oChonAnh.value = "";
@@ -853,7 +867,7 @@ async function suaSanPham(id) {
 
 
 // ========================================
-// 19. HỦY CHẾ ĐỘ SỬA
+// 19. HỦY SỬA
 // ========================================
 
 function huyCheDoSua() {
@@ -866,6 +880,8 @@ function huyCheDoSua() {
     thongBaoSanPham.textContent = "";
 
     nutHuySua.classList.add("an");
+
+    ketThucLuuSanPham();
 }
 
 nutHuySua.addEventListener(
@@ -909,30 +925,38 @@ function ganSuKienNutAnHien() {
                 nut.textContent =
                     "Đang cập nhật...";
 
-                const { error } =
-                    await supabaseClient
-                        .from("san_pham")
-                        .update({
-                            dang_ban:
-                                trangThaiMoi
-                        })
-                        .eq("id", id);
+                const {
+                    data: duLieuCapNhat,
+                    error
+                } = await supabaseClient
+                    .from("san_pham")
+                    .update({
+                        dang_ban:
+                            trangThaiMoi
+                    })
+                    .eq("id", id)
+                    .select("id");
 
-                if (error) {
+                if (
+                    error ||
+                    !duLieuCapNhat ||
+                    duLieuCapNhat.length === 0
+                ) {
                     alert(
-                        "Không cập nhật được: " +
-                        error.message
+                        error
+                            ? "Không cập nhật được: " +
+                              error.message
+                            : "Không cập nhật được. Hãy kiểm tra quyền UPDATE."
                     );
 
                     nut.disabled = false;
+                    nut.textContent =
+                        dangBanHienTai
+                            ? "🙈 Ẩn sản phẩm"
+                            : "👁️ Hiện sản phẩm";
+
                     return;
                 }
-
-                alert(
-                    trangThaiMoi
-                        ? "Đã hiện sản phẩm trên website."
-                        : "Đã ẩn sản phẩm khỏi website."
-                );
 
                 await taiDanhSachSanPham();
             }
@@ -942,7 +966,7 @@ function ganSuKienNutAnHien() {
 
 
 // ========================================
-// 21. TÌM KIẾM VÀ LỌC SẢN PHẨM
+// 21. TÌM KIẾM VÀ LỌC
 // ========================================
 
 function boDauTiengViet(noiDung) {
@@ -964,7 +988,7 @@ function locDanhSachSanPham() {
             oTimSanPham.value
         );
 
-    const trangThaiCanLoc =
+    const trangThai =
         oLocTrangThai.value;
 
     const cacSanPham =
@@ -972,56 +996,39 @@ function locDanhSachSanPham() {
             ".san-pham-admin"
         );
 
-    cacSanPham.forEach(
-        function (sanPham) {
-            const tenSanPham =
-                sanPham.querySelector("h3")
-                    ?.textContent || "";
+    cacSanPham.forEach(function (sanPham) {
+        const ten =
+            sanPham.querySelector("h3")
+                ?.textContent || "";
 
-            const tenDaXuLy =
-                boDauTiengViet(
-                    tenSanPham
-                );
+        const nutAnHien =
+            sanPham.querySelector(
+                ".nut-an-hien"
+            );
 
-            const nutAnHien =
-                sanPham.querySelector(
-                    ".nut-an-hien"
-                );
+        const dangBan =
+            nutAnHien?.dataset.dangBan ===
+            "true";
 
-            const dangBan =
-                nutAnHien?.dataset
-                    .dangBan === "true";
+        const dungTen =
+            boDauTiengViet(ten)
+                .includes(tuKhoa);
 
-            const dungTuKhoa =
-                tenDaXuLy.includes(
-                    tuKhoa
-                );
+        let dungTrangThai = true;
 
-            let dungTrangThai = true;
-
-            if (
-                trangThaiCanLoc ===
-                "dang-ban"
-            ) {
-                dungTrangThai =
-                    dangBan;
-            }
-
-            if (
-                trangThaiCanLoc ===
-                "dang-an"
-            ) {
-                dungTrangThai =
-                    !dangBan;
-            }
-
-            sanPham.style.display =
-                dungTuKhoa &&
-                dungTrangThai
-                    ? ""
-                    : "none";
+        if (trangThai === "dang-ban") {
+            dungTrangThai = dangBan;
         }
-    );
+
+        if (trangThai === "dang-an") {
+            dungTrangThai = !dangBan;
+        }
+
+        sanPham.style.display =
+            dungTen && dungTrangThai
+                ? ""
+                : "none";
+    });
 }
 
 oTimSanPham.addEventListener(

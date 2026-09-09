@@ -13,19 +13,19 @@ html {
 body {
     margin: 0;
     color: #26352b;
-    background:
-        linear-gradient(
-            135deg,
-            #f2f8ed,
-            #fff9ec
-        );
+    background: linear-gradient(
+        135deg,
+        #f2f8ed,
+        #fff9ec
+    );
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
     font: inherit;
 }
 
@@ -44,44 +44,39 @@ img {
 
 
 /* ========================================
-   2. KHUNG TRANG ADMIN
+   2. KHUNG ADMIN
 ======================================== */
 
 .khung-admin {
     width: min(1180px, 92%);
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 auto;
 }
 
 .noi-dung-admin {
     min-height: calc(100vh - 190px);
-    padding-top: 45px;
-    padding-bottom: 70px;
+    padding: 45px 0 70px;
 }
 
 
 /* ========================================
-   3. ĐẦU TRANG ADMIN
+   3. ĐẦU TRANG
 ======================================== */
 
 .dau-trang-admin {
     color: white;
-    background:
-        linear-gradient(
-            135deg,
-            #104f2d,
-            #21874d
-        );
-    box-shadow:
-        0 6px 20px
+    background: linear-gradient(
+        135deg,
+        #104f2d,
+        #21874d
+    );
+    box-shadow: 0 6px 20px
         rgba(15, 77, 42, 0.22);
 }
 
 .thanh-dau-trang {
     display: flex;
     min-height: 105px;
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding: 18px 0;
     align-items: center;
     justify-content: space-between;
     gap: 25px;
@@ -89,10 +84,7 @@ img {
 
 .dau-trang-admin h1 {
     margin: 2px 0 0;
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(25px, 4vw, 37px);
     line-height: 1.2;
 }
@@ -121,14 +113,12 @@ img {
     justify-content: center;
     gap: 7px;
     color: white;
-    background:
-        linear-gradient(
-            135deg,
-            #176b3a,
-            #269753
-        );
-    box-shadow:
-        0 6px 15px
+    background: linear-gradient(
+        135deg,
+        #176b3a,
+        #269753
+    );
+    box-shadow: 0 6px 15px
         rgba(23, 107, 58, 0.2);
     font-weight: 700;
     text-decoration: none;
@@ -140,8 +130,7 @@ img {
 
 .nut:hover {
     transform: translateY(-2px);
-    box-shadow:
-        0 9px 20px
+    box-shadow: 0 9px 20px
         rgba(23, 107, 58, 0.27);
     filter: brightness(1.05);
 }
@@ -164,38 +153,49 @@ img {
     border: 1px solid
         rgba(255, 255, 255, 0.55);
     color: white;
-    background:
-        rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.14);
     box-shadow: none;
 }
 
 .nut-phu:hover {
-    background:
-        rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .nut-dang-xuat {
-    background:
-        linear-gradient(
-            135deg,
-            #a83b32,
-            #d25749
-        );
+    background: linear-gradient(
+        135deg,
+        #a83b32,
+        #d25749
+    );
 }
 
 .nut-sua {
-    padding: 9px 15px;
-    background:
-        linear-gradient(
-            135deg,
-            #cc741a,
-            #ed9a2e
-        );
+    background: linear-gradient(
+        135deg,
+        #cc741a,
+        #ed9a2e
+    );
+}
+
+.nut-an-hien {
+    background: linear-gradient(
+        135deg,
+        #356db1,
+        #488fdc
+    );
+}
+
+.nut-huy {
+    width: 100%;
+    margin-top: 10px;
+    color: #37443a;
+    background: #e3e8e3;
+    box-shadow: none;
 }
 
 
 /* ========================================
-   5. KHU VỰC ĐĂNG NHẬP
+   5. ĐĂNG NHẬP
 ======================================== */
 
 .khung-dang-nhap {
@@ -212,8 +212,7 @@ img {
     border: 1px solid #ded8c8;
     border-radius: 22px;
     background-color: white;
-    box-shadow:
-        0 16px 45px
+    box-shadow: 0 16px 45px
         rgba(39, 72, 48, 0.14);
 }
 
@@ -225,15 +224,11 @@ img {
     border-radius: 50%;
     place-items: center;
     color: white;
-    background:
-        linear-gradient(
-            135deg,
-            #176b3a,
-            #36a461
-        );
-    box-shadow:
-        0 8px 20px
-        rgba(23, 107, 58, 0.25);
+    background: linear-gradient(
+        135deg,
+        #176b3a,
+        #36a461
+    );
     font-size: 30px;
 }
 
@@ -246,6 +241,7 @@ img {
 
 .the-dang-nhap .mo-ta {
     margin-bottom: 25px;
+    color: #667269;
     text-align: center;
 }
 
@@ -256,21 +252,19 @@ img {
 
 .tieu-de-quan-ly {
     display: flex;
-    margin-bottom: 28px;
+    margin-bottom: 26px;
     padding: 27px 30px;
     border-radius: 18px;
     align-items: center;
     justify-content: space-between;
     gap: 25px;
     color: white;
-    background:
-        linear-gradient(
-            135deg,
-            #155f35,
-            #278c50
-        );
-    box-shadow:
-        0 10px 28px
+    background: linear-gradient(
+        135deg,
+        #155f35,
+        #278c50
+    );
+    box-shadow: 0 10px 28px
         rgba(23, 107, 58, 0.18);
 }
 
@@ -286,7 +280,55 @@ img {
 
 
 /* ========================================
-   7. LƯỚI QUẢN LÝ
+   7. THỐNG KÊ
+======================================== */
+
+.thong-ke-admin {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 26px;
+    gap: 18px;
+}
+
+.o-thong-ke {
+    display: flex;
+    padding: 21px;
+    border: 1px solid #dce5da;
+    border-radius: 16px;
+    align-items: center;
+    gap: 16px;
+    background-color: white;
+    box-shadow: 0 8px 22px
+        rgba(40, 72, 48, 0.09);
+}
+
+.o-thong-ke > span {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    border-radius: 14px;
+    place-items: center;
+    background-color: #e9f6e9;
+    font-size: 25px;
+}
+
+.o-thong-ke strong {
+    display: block;
+    color: #176b3a;
+    font-size: 28px;
+    line-height: 1.1;
+}
+
+.o-thong-ke p {
+    margin: 4px 0 0;
+    color: #6c776e;
+    font-size: 14px;
+}
+
+
+/* ========================================
+   8. LƯỚI QUẢN LÝ
 ======================================== */
 
 .luoi-quan-ly {
@@ -303,8 +345,7 @@ img {
     border: 1px solid #e0d9c9;
     border-radius: 20px;
     background-color: white;
-    box-shadow:
-        0 10px 30px
+    box-shadow: 0 10px 30px
         rgba(40, 72, 48, 0.1);
 }
 
@@ -342,7 +383,7 @@ img {
 
 
 /* ========================================
-   8. BIỂU MẪU
+   9. BIỂU MẪU
 ======================================== */
 
 .nhom-o {
@@ -355,22 +396,20 @@ img {
     color: #294831;
     font-weight: 750;
 }
+
 .nhom-o input,
 .nhom-o textarea,
 .nhom-o select {
-
-
     width: 100%;
     padding: 12px 14px;
     border: 1px solid #bcc9be;
     border-radius: 10px;
     color: #26352b;
-    background-color: #ffffff;
+    background-color: white;
     outline: none;
     transition:
         border-color 0.2s,
-        box-shadow 0.2s,
-        background-color 0.2s;
+        box-shadow 0.2s;
 }
 
 .nhom-o textarea {
@@ -378,18 +417,11 @@ img {
     resize: vertical;
 }
 
-.nhom-o input:hover,
-.nhom-o textarea:hover {
-    border-color: #7fa58a;
-}
-
 .nhom-o input:focus,
 .nhom-o textarea:focus,
 .nhom-o select:focus {
     border-color: #21874d;
-    background-color: #fbfffb;
-    box-shadow:
-        0 0 0 4px
+    box-shadow: 0 0 0 4px
         rgba(33, 135, 77, 0.12);
 }
 
@@ -397,7 +429,6 @@ img {
     padding: 10px;
     border-style: dashed;
     background-color: #f6faf4;
-    cursor: pointer;
 }
 
 .nhom-o input[type="file"]::file-selector-button {
@@ -424,9 +455,14 @@ img {
     gap: 15px;
 }
 
+.nhom-nut-form {
+    display: grid;
+    gap: 5px;
+}
+
 
 /* ========================================
-   9. XEM TRƯỚC ẢNH
+   10. XEM TRƯỚC ẢNH
 ======================================== */
 
 .khung-xem-truoc {
@@ -449,14 +485,11 @@ img {
     max-height: 310px;
     border-radius: 11px;
     object-fit: cover;
-    box-shadow:
-        0 7px 20px
-        rgba(41, 66, 47, 0.15);
 }
 
 
 /* ========================================
-   10. THÔNG BÁO
+   11. THÔNG BÁO
 ======================================== */
 
 .thong-bao {
@@ -469,7 +502,7 @@ img {
 
 
 /* ========================================
-   11. DANH SÁCH SẢN PHẨM ADMIN
+   12. DANH SÁCH SẢN PHẨM
 ======================================== */
 
 #danh-sach-quan-ly {
@@ -486,21 +519,8 @@ img {
     align-items: start;
     gap: 17px;
     background-color: #fffdf9;
-    box-shadow:
-        0 5px 15px
+    box-shadow: 0 5px 15px
         rgba(42, 72, 49, 0.07);
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s;
-}
-
-.san-pham-admin:hover {
-    border-color: #a8c7ae;
-    transform: translateY(-2px);
-    box-shadow:
-        0 9px 22px
-        rgba(42, 72, 49, 0.12);
 }
 
 .san-pham-admin > img {
@@ -519,7 +539,6 @@ img {
     margin: 0 0 6px;
     color: #176b3a;
     font-size: 20px;
-    line-height: 1.3;
     overflow-wrap: anywhere;
 }
 
@@ -542,9 +561,22 @@ img {
     font-weight: 800;
 }
 
+.cac-nut-san-pham {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.cac-nut-san-pham .nut {
+    min-height: 38px;
+    padding: 8px 13px;
+    font-size: 13px;
+}
+
 
 /* ========================================
-   12. CHÂN TRANG ADMIN
+   13. CHÂN TRANG
 ======================================== */
 
 .chan-trang-admin {
@@ -560,28 +592,28 @@ img {
 
 
 /* ========================================
-   13. GIAO DIỆN ĐIỆN THOẠI
+   14. ĐIỆN THOẠI
 ======================================== */
 
 @media (max-width: 900px) {
     .luoi-quan-ly {
         grid-template-columns: 1fr;
     }
+}
 
-    .thanh-dau-trang {
-        padding-top: 16px;
-        padding-bottom: 16px;
+@media (max-width: 700px) {
+    .thong-ke-admin {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
     .khung-admin {
-        width: min(94%, 1180px);
+        width: 94%;
     }
 
     .noi-dung-admin {
-        padding-top: 25px;
-        padding-bottom: 45px;
+        padding: 25px 0 45px;
     }
 
     .thanh-dau-trang,
@@ -621,10 +653,6 @@ img {
         width: 95px;
         height: 95px;
     }
-
-    .noi-dung-san-pham-admin h3 {
-        font-size: 18px;
-    }
 }
 
 @media (max-width: 430px) {
@@ -637,60 +665,11 @@ img {
         height: 210px;
     }
 
-    .nut-sua {
-        width: 100%;
+    .cac-nut-san-pham {
+        display: grid;
     }
-}
-/* ========================================
-   14. CÁC Ô THỐNG KÊ
-======================================== */
 
-.thong-ke-admin {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 26px;
-    gap: 18px;
-}
-
-.o-thong-ke {
-    display: flex;
-    padding: 21px;
-    border: 1px solid #dce5da;
-    border-radius: 16px;
-    align-items: center;
-    gap: 16px;
-    background-color: white;
-    box-shadow:
-        0 8px 22px
-        rgba(40, 72, 48, 0.09);
-}
-
-.o-thong-ke > span {
-    display: grid;
-    width: 52px;
-    height: 52px;
-    flex: 0 0 52px;
-    border-radius: 14px;
-    place-items: center;
-    background-color: #e9f6e9;
-    font-size: 25px;
-}
-
-.o-thong-ke strong {
-    display: block;
-    color: #176b3a;
-    font-size: 28px;
-    line-height: 1.1;
-}
-
-.o-thong-ke p {
-    margin: 4px 0 0;
-    color: #6c776e;
-    font-size: 14px;
-}
-
-@media (max-width: 700px) {
-    .thong-ke-admin {
-        grid-template-columns: 1fr;
+    .cac-nut-san-pham .nut {
+        width: 100%;
     }
 }

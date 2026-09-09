@@ -30,9 +30,8 @@ select {
     font: inherit;
 }
 
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
+button {
+    cursor: pointer;
 }
 
 a {
@@ -41,6 +40,14 @@ a {
 
 .an {
     display: none !important;
+}
+
+.can-giua {
+    text-align: center;
+}
+
+.cach-tren {
+    margin-top: 30px;
 }
 
 
@@ -73,6 +80,14 @@ a {
     text-align: center;
 }
 
+.nen-xanh-nhat {
+    background: linear-gradient(
+        180deg,
+        #f1f8ed,
+        #fffaf0
+    );
+}
+
 
 /* ========================================
    3. MENU
@@ -88,7 +103,8 @@ a {
         #0f542d,
         #21884d
     );
-    box-shadow: 0 4px 18px rgba(17, 69, 39, 0.22);
+    box-shadow: 0 4px 18px
+        rgba(17, 69, 39, 0.22);
 }
 
 .menu-ben-trong {
@@ -124,33 +140,24 @@ a {
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition:
-        background-color 0.2s,
-        transform 0.2s;
+    white-space: nowrap;
 }
 
 .danh-sach-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.17);
-    transform: translateY(-1px);
+    background-color:
+        rgba(255, 255, 255, 0.17);
 }
 
 #nut-doi-giao-dien {
     width: 42px;
     height: 42px;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid
+        rgba(255, 255, 255, 0.35);
     border-radius: 50%;
     color: white;
-    background-color: rgba(255, 255, 255, 0.13);
-    cursor: pointer;
-    transition:
-        background-color 0.2s,
-        transform 0.2s;
-}
-
-#nut-doi-giao-dien:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-    transform: rotate(12deg);
+    background-color:
+        rgba(255, 255, 255, 0.13);
 }
 
 
@@ -171,7 +178,8 @@ a {
             rgba(5, 45, 22, 0.64),
             rgba(8, 62, 30, 0.74)
         ),
-        url("banh-com.jpg") center/cover no-repeat;
+        url("banh-com.jpg")
+        center/cover no-repeat;
     text-align: center;
 }
 
@@ -185,12 +193,13 @@ a {
     display: inline-block;
     margin-bottom: 16px;
     padding: 7px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid
+        rgba(255, 255, 255, 0.45);
     border-radius: 999px;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color:
+        rgba(255, 255, 255, 0.15);
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.5px;
 }
 
 .anh-bia h1 {
@@ -198,7 +207,8 @@ a {
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(40px, 8vw, 76px);
     line-height: 1.05;
-    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+    text-shadow: 0 4px 18px
+        rgba(0, 0, 0, 0.28);
 }
 
 .anh-bia p {
@@ -234,24 +244,19 @@ a {
         #176b3a,
         #249552
     );
-    box-shadow: 0 6px 14px rgba(23, 107, 58, 0.22);
+    box-shadow: 0 6px 14px
+        rgba(23, 107, 58, 0.22);
     font-weight: 700;
     text-decoration: none;
-    cursor: pointer;
     transition:
         transform 0.2s,
-        box-shadow 0.2s,
-        filter 0.2s;
+        box-shadow 0.2s;
 }
 
 .nut:hover {
     transform: translateY(-2px);
-    box-shadow: 0 9px 20px rgba(23, 107, 58, 0.28);
-    filter: brightness(1.05);
-}
-
-.nut:active {
-    transform: translateY(0);
+    box-shadow: 0 9px 20px
+        rgba(23, 107, 58, 0.28);
 }
 
 .nut-phu {
@@ -259,11 +264,6 @@ a {
     color: #176b3a;
     background: white;
     box-shadow: none;
-}
-
-.nut-phu:hover {
-    color: white;
-    background-color: #176b3a;
 }
 
 .nut-facebook {
@@ -292,7 +292,7 @@ a {
 
 
 /* ========================================
-   6. GIỚI THIỆU VÀ ĐẶC ĐIỂM
+   6. ĐẶC ĐIỂM
 ======================================== */
 
 .luoi-dac-diem {
@@ -306,16 +306,9 @@ a {
     border: 1px solid #e6ddc9;
     border-radius: 18px;
     background-color: white;
-    box-shadow: 0 8px 24px rgba(49, 77, 58, 0.08);
+    box-shadow: 0 8px 24px
+        rgba(49, 77, 58, 0.08);
     text-align: center;
-    transition:
-        transform 0.25s,
-        box-shadow 0.25s;
-}
-
-.the-dac-diem:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 13px 28px rgba(49, 77, 58, 0.14);
 }
 
 .bieu-tuong-dac-diem {
@@ -336,20 +329,13 @@ a {
 
 
 /* ========================================
-   7. SẢN PHẨM VÀ THƯ VIỆN ẢNH
+   7. SẢN PHẨM
 ======================================== */
-
-.nen-xanh-nhat {
-    background: linear-gradient(
-        180deg,
-        #f1f8ed,
-        #fffaf0
-    );
-}
 
 .luoi-san-pham {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
     gap: 25px;
 }
 
@@ -359,7 +345,8 @@ a {
     border: 1px solid #e5dcc8;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 0 9px 26px rgba(39, 67, 46, 0.1);
+    box-shadow: 0 9px 26px
+        rgba(39, 67, 46, 0.1);
     transition:
         transform 0.25s,
         box-shadow 0.25s;
@@ -367,45 +354,32 @@ a {
 
 .the-san-pham:hover,
 .san-pham:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 34px rgba(39, 67, 46, 0.16);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 34px
+        rgba(39, 67, 46, 0.16);
 }
 
-.the-san-pham img,
-.san-pham img {
+.the-san-pham > img,
+.san-pham > img {
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
 
-.noi-dung-san-pham {
+.noi-dung-san-pham,
+.noi-dung-the {
     padding: 22px;
 }
 
 .noi-dung-san-pham h3,
-.the-san-pham h3 {
+.noi-dung-the h3 {
     margin: 0 0 8px;
     color: #176b3a;
     font-size: 23px;
 }
 
-.the-san-pham > h3,
-.the-san-pham > p,
-.the-san-pham > a,
-.the-san-pham > button {
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-.the-san-pham > h3 {
-    margin-top: 20px;
-}
-
-.the-san-pham > :last-child {
-    margin-bottom: 22px;
-}
-
-.gia-san-pham {
+.gia-san-pham,
+.gia-the {
     margin: 14px 0;
     color: #d35400;
     font-size: 21px;
@@ -413,7 +387,7 @@ a {
 }
 
 .khung-gia {
-    margin: 18px 0;
+    margin: 18px 0 0;
     padding: 14px;
     border: 1px solid #eadfc7;
     border-radius: 12px;
@@ -424,6 +398,7 @@ a {
     display: flex;
     margin: 15px 0;
     align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
 }
 
@@ -432,17 +407,12 @@ a {
 }
 
 .o-so-luong {
-    width: 78px;
-    padding: 9px;
-    border: 1px solid #bdc9be;
-    border-radius: 8px;
+    width: 65px;
+    height: 42px;
+    padding: 6px;
+    border: none;
     outline: none;
     text-align: center;
-}
-
-.o-so-luong:focus {
-    border-color: #21884d;
-    box-shadow: 0 0 0 3px rgba(33, 136, 77, 0.13);
 }
 
 .thanh-tien {
@@ -450,6 +420,46 @@ a {
     color: #d35400;
     font-weight: 800;
 }
+
+
+/* ========================================
+   8. NÚT TĂNG GIẢM
+======================================== */
+
+.bo-chon-so-luong {
+    display: inline-flex;
+    border: 1px solid #b9c8bb;
+    border-radius: 10px;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;
+}
+
+.nut-so-luong {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: none;
+    color: white;
+    background-color: #176b3a;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.nut-so-luong:hover {
+    background-color: #23864c;
+}
+
+.o-so-luong::-webkit-inner-spin-button,
+.o-so-luong::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+}
+
+
+/* ========================================
+   9. THƯ VIỆN ẢNH
+======================================== */
 
 .thu-vien-anh {
     display: grid;
@@ -462,21 +472,14 @@ a {
     height: 250px;
     border-radius: 15px;
     object-fit: cover;
-    box-shadow: 0 7px 20px rgba(37, 59, 42, 0.16);
+    box-shadow: 0 7px 20px
+        rgba(37, 59, 42, 0.16);
     cursor: zoom-in;
-    transition:
-        transform 0.25s,
-        box-shadow 0.25s;
-}
-
-.anh-san-pham:hover {
-    transform: scale(1.025);
-    box-shadow: 0 11px 26px rgba(37, 59, 42, 0.22);
 }
 
 
 /* ========================================
-   8. GIỎ HÀNG
+   10. GIỎ HÀNG
 ======================================== */
 
 .khung-gio-hang {
@@ -486,7 +489,8 @@ a {
     border: 1px solid #ded4bf;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 0 10px 30px rgba(38, 68, 46, 0.11);
+    box-shadow: 0 10px 30px
+        rgba(38, 68, 46, 0.11);
 }
 
 .dong-gio-hang {
@@ -509,7 +513,6 @@ a {
     border-radius: 8px;
     color: white;
     background-color: #c94e42;
-    cursor: pointer;
 }
 
 .hang-tong-gio {
@@ -540,7 +543,7 @@ a {
 
 
 /* ========================================
-   9. BIỂU MẪU ĐẶT HÀNG
+   11. BIỂU MẪU
 ======================================== */
 
 .khung-form {
@@ -550,7 +553,8 @@ a {
     border: 1px solid #e3dac6;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 0 10px 30px rgba(38, 68, 46, 0.11);
+    box-shadow: 0 10px 30px
+        rgba(38, 68, 46, 0.11);
 }
 
 .nhom-o {
@@ -574,9 +578,6 @@ a {
     color: #26352b;
     background-color: white;
     outline: none;
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
 }
 
 .nhom-o textarea {
@@ -588,12 +589,13 @@ a {
 .nhom-o textarea:focus,
 .nhom-o select:focus {
     border-color: #21884d;
-    box-shadow: 0 0 0 4px rgba(33, 136, 77, 0.12);
+    box-shadow: 0 0 0 4px
+        rgba(33, 136, 77, 0.12);
 }
 
 
 /* ========================================
-   10. LIÊN HỆ
+   12. LIÊN HỆ
 ======================================== */
 
 .khung-lien-he {
@@ -607,7 +609,6 @@ a {
         #155f35,
         #25894f
     );
-    box-shadow: 0 12px 30px rgba(23, 107, 58, 0.23);
     text-align: center;
 }
 
@@ -616,13 +617,9 @@ a {
     font-size: 30px;
 }
 
-.khung-lien-he a:not(.nut) {
-    color: white;
-}
-
 
 /* ========================================
-   11. CỬA SỔ PHÓNG TO ẢNH
+   13. CỬA SỔ ẢNH
 ======================================== */
 
 #cua-so-anh {
@@ -633,7 +630,8 @@ a {
     padding: 30px;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.86);
+    background-color:
+        rgba(0, 0, 0, 0.86);
 }
 
 #cua-so-anh.hien {
@@ -645,7 +643,6 @@ a {
     max-height: 86vh;
     border-radius: 14px;
     object-fit: contain;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.48);
 }
 
 #dong-cua-so-anh {
@@ -657,14 +654,14 @@ a {
     border: none;
     border-radius: 50%;
     color: white;
-    background-color: rgba(255, 255, 255, 0.17);
+    background-color:
+        rgba(255, 255, 255, 0.17);
     font-size: 30px;
-    cursor: pointer;
 }
 
 
 /* ========================================
-   12. NÚT LÊN ĐẦU TRANG
+   14. NÚT LÊN ĐẦU
 ======================================== */
 
 #nut-len-dau {
@@ -678,16 +675,13 @@ a {
     border-radius: 50%;
     color: white;
     background-color: #176b3a;
-    box-shadow: 0 7px 20px rgba(23, 107, 58, 0.3);
+    box-shadow: 0 7px 20px
+        rgba(23, 107, 58, 0.3);
     font-size: 22px;
     opacity: 0;
     visibility: hidden;
-    cursor: pointer;
     transform: translateY(12px);
-    transition:
-        opacity 0.25s,
-        visibility 0.25s,
-        transform 0.25s;
+    transition: 0.25s;
 }
 
 #nut-len-dau.hien {
@@ -698,7 +692,7 @@ a {
 
 
 /* ========================================
-   13. CHÂN TRANG
+   15. CHÂN TRANG
 ======================================== */
 
 .chan-trang {
@@ -723,7 +717,7 @@ a {
 
 
 /* ========================================
-   14. HIỆU ỨNG CUỘN
+   16. HIỆU ỨNG CUỘN
 ======================================== */
 
 .hieu-ung-cuon {
@@ -741,7 +735,7 @@ a {
 
 
 /* ========================================
-   15. CHẾ ĐỘ TỐI
+   17. CHẾ ĐỘ TỐI
 ======================================== */
 
 body.che-do-toi {
@@ -758,15 +752,12 @@ body.che-do-toi {
 }
 
 .che-do-toi .tieu-de-phan,
-.che-do-toi .noi-dung-san-pham h3,
-.che-do-toi .the-san-pham h3,
-.che-do-toi .the-dac-diem h3 {
+.che-do-toi h3 {
     color: #83d49c;
 }
 
 .che-do-toi .mo-ta-phan,
-.che-do-toi .the-dac-diem p,
-.che-do-toi .dong-gio-hang p {
+.che-do-toi .the-dac-diem p {
     color: #b2c0b5;
 }
 
@@ -785,27 +776,19 @@ body.che-do-toi {
     background-color: #25392b;
 }
 
-.che-do-toi .nhom-o label {
-    color: #d5e5d8;
-}
-
 .che-do-toi .nhom-o input,
 .che-do-toi .nhom-o textarea,
 .che-do-toi .nhom-o select,
+.che-do-toi .bo-chon-so-luong,
 .che-do-toi .o-so-luong {
     border-color: #496050;
     color: white;
     background-color: #17251c;
 }
 
-.che-do-toi .nut-phu {
-    color: #9adbad;
-    background-color: #203328;
-}
-
 
 /* ========================================
-   16. GIAO DIỆN ĐIỆN THOẠI
+   18. MÁY TÍNH BẢNG
 ======================================== */
 
 @media (max-width: 850px) {
@@ -822,23 +805,25 @@ body.che-do-toi {
         overflow-x: auto;
     }
 
-    .danh-sach-menu a {
-        white-space: nowrap;
-    }
-
     .phan-noi-dung {
         padding: 52px 0;
         scroll-margin-top: 125px;
     }
 
     .luoi-san-pham {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .luoi-dac-diem {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ========================================
+   19. ĐIỆN THOẠI
+======================================== */
 
 @media (max-width: 600px) {
     .anh-bia {
@@ -865,8 +850,8 @@ body.che-do-toi {
         grid-template-columns: 1fr;
     }
 
-    .the-san-pham img,
-    .san-pham img,
+    .the-san-pham > img,
+    .san-pham > img,
     .anh-san-pham {
         height: 245px;
     }
@@ -884,43 +869,44 @@ body.che-do-toi {
         flex-direction: column;
     }
 
+    /* Ngăn lỗi khoảng trắng trên điện thoại */
+
+    .hieu-ung-cuon,
+    .hieu-ung-cuon.da-hien {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
     #nut-len-dau {
         right: 15px;
         bottom: 15px;
     }
 }
+/* ĐẦU TRANG TẤT CẢ SẢN PHẨM */
 
-
-/* ========================================
-   17. GIẢM HIỆU ỨNG NẾU THIẾT BỊ YÊU CẦU
-======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-
-    .hieu-ung-cuon {
-        opacity: 1;
-        transform: none;
-    }
+.dau-trang-san-pham {
+    padding: 75px 20px;
+    color: white;
+    background: linear-gradient(
+        135deg,
+        #125c33,
+        #279052
+    );
+    text-align: center;
 }
-/* Sửa lỗi khoảng trắng trên điện thoại */
-@media (max-width: 600px) {
-    .hieu-ung-cuon {
-        opacity: 1 !important;
-        transform: none !important;
-    }
 
-    .hieu-ung-cuon.da-hien {
-        opacity: 1 !important;
-        transform: none !important;
-    }
+.dau-trang-san-pham h1 {
+    margin: 8px 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 7vw, 62px);
+}
+
+.dau-trang-san-pham p {
+    margin: 0 0 25px;
+    font-size: 18px;
+}
+
+.dau-trang-san-pham .nut-phu {
+    border-color: white;
+    color: #176b3a;
 }

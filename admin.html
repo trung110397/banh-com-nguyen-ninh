@@ -9,40 +9,26 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="robots"
-        content="noindex, nofollow"
-    >
+    <meta name="robots" content="noindex, nofollow">
 
-    <title>
-        Quản trị cửa hàng - Bánh cốm Nguyên Ninh
-    </title>
+    <title>Quản trị - Bánh cốm Nguyên Ninh</title>
 
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css?v=5">
 </head>
 
 <body>
 
-    <!-- ===================================
-         1. ĐẦU TRANG ADMIN
-    ==================================== -->
+    <!-- ĐẦU TRANG -->
 
     <header class="dau-trang-admin">
-
         <div class="khung-admin thanh-dau-trang">
 
             <div>
-                <p class="nhan-admin">
-                    Trang quản trị
-                </p>
-
+                <p class="nhan-admin">Trang quản trị</p>
                 <h1>Bánh cốm Nguyên Ninh</h1>
             </div>
 
-            <a
-                class="nut nut-phu"
-                href="index.html"
-            >
+            <a class="nut nut-phu" href="index.html">
                 ← Về trang chính
             </a>
 
@@ -52,32 +38,26 @@
 
     <main class="khung-admin noi-dung-admin">
 
-        <!-- ===================================
-             2. KHU VỰC ĐĂNG NHẬP
-        ==================================== -->
+        <!-- KHU VỰC ĐĂNG NHẬP -->
 
         <section
             class="khung-dang-nhap"
             id="khu-vuc-dang-nhap"
         >
-
             <div class="the-dang-nhap">
 
-                <div class="bieu-tuong-khoa">
-                    🔐
-                </div>
+                <div class="bieu-tuong-khoa">🔐</div>
 
                 <h2>Đăng nhập quản trị</h2>
 
                 <p class="mo-ta">
                     Chỉ tài khoản quản trị viên mới có thể
-                    quản lý sản phẩm của cửa hàng.
+                    quản lý sản phẩm.
                 </p>
 
                 <form id="form-dang-nhap">
 
                     <div class="nhom-o">
-
                         <label for="email-admin">
                             Email quản trị
                         </label>
@@ -89,11 +69,9 @@
                             placeholder="Nhập email"
                             required
                         >
-
                     </div>
 
                     <div class="nhom-o">
-
                         <label for="mat-khau-admin">
                             Mật khẩu
                         </label>
@@ -105,7 +83,6 @@
                             placeholder="Nhập mật khẩu"
                             required
                         >
-
                     </div>
 
                     <button
@@ -122,14 +99,11 @@
                     ></p>
 
                 </form>
-
             </div>
         </section>
 
 
-        <!-- ===================================
-             3. KHU VỰC QUẢN LÝ
-        ==================================== -->
+        <!-- KHU VỰC QUẢN LÝ -->
 
         <section
             class="an"
@@ -146,8 +120,7 @@
                     <h2>Quản lý sản phẩm</h2>
 
                     <p class="mo-ta">
-                        Thêm, sửa, ẩn hoặc hiện sản phẩm
-                        của cửa hàng.
+                        Thêm, sửa, ẩn hoặc hiện sản phẩm.
                     </p>
                 </div>
 
@@ -162,52 +135,35 @@
             </div>
 
 
-            <!-- ===================================
-                 4. THỐNG KÊ
-            ==================================== -->
+            <!-- THỐNG KÊ -->
 
             <div class="thong-ke-admin">
 
                 <div class="o-thong-ke">
-
                     <span>📦</span>
 
                     <div>
-                        <strong id="tong-san-pham">
-                            0
-                        </strong>
-
+                        <strong id="tong-san-pham">0</strong>
                         <p>Tổng sản phẩm</p>
                     </div>
-
                 </div>
 
                 <div class="o-thong-ke">
-
                     <span>✅</span>
 
                     <div>
-                        <strong id="san-pham-dang-ban">
-                            0
-                        </strong>
-
+                        <strong id="san-pham-dang-ban">0</strong>
                         <p>Đang bán</p>
                     </div>
-
                 </div>
 
                 <div class="o-thong-ke">
-
                     <span>🙈</span>
 
                     <div>
-                        <strong id="san-pham-dang-an">
-                            0
-                        </strong>
-
+                        <strong id="san-pham-dang-an">0</strong>
                         <p>Đang ẩn</p>
                     </div>
-
                 </div>
 
             </div>
@@ -215,30 +171,30 @@
 
             <div class="luoi-quan-ly">
 
-                <!-- ===================================
-                     5. BIỂU MẪU SẢN PHẨM
-                ==================================== -->
+                <!-- BIỂU MẪU SẢN PHẨM -->
 
                 <section class="the-admin">
 
                     <div class="tieu-de-the">
-
                         <span>➕</span>
 
                         <div>
                             <h2>Thông tin sản phẩm</h2>
 
                             <p>
-                                Điền đầy đủ thông tin bên dưới.
+                                Thêm mới hoặc sửa sản phẩm.
                             </p>
                         </div>
-
                     </div>
 
-                    <form id="form-san-pham">
+                    <!-- novalidate giúp JavaScript tự kiểm tra lỗi -->
+
+                    <form
+                        id="form-san-pham"
+                        novalidate
+                    >
 
                         <div class="nhom-o">
-
                             <label for="ten-san-pham">
                                 Tên sản phẩm
                             </label>
@@ -246,18 +202,15 @@
                             <input
                                 id="ten-san-pham"
                                 type="text"
-                                placeholder="Ví dụ: Bánh mochi cốm"
                                 maxlength="100"
-                                required
+                                placeholder="Ví dụ: Bánh mochi cốm"
                             >
-
                         </div>
 
 
                         <div class="hai-cot">
 
                             <div class="nhom-o">
-
                                 <label for="gia-san-pham">
                                     Giá bán
                                 </label>
@@ -268,19 +221,16 @@
                                     min="1"
                                     step="1000"
                                     placeholder="Ví dụ: 60000"
-                                    required
                                 >
 
                                 <small>
                                     Chỉ nhập số, không nhập dấu chấm.
                                 </small>
-
                             </div>
 
                             <div class="nhom-o">
-
                                 <label for="so-banh">
-                                    Số bánh
+                                    Số hộp
                                 </label>
 
                                 <input
@@ -289,20 +239,17 @@
                                     min="1"
                                     step="1"
                                     placeholder="Ví dụ: 10"
-                                    required
                                 >
 
                                 <small>
-                                    Số bánh có trong một phần.
+                                    Số hộp trong một phần.
                                 </small>
-
                             </div>
 
                         </div>
 
 
                         <div class="nhom-o">
-
                             <label for="mo-ta-san-pham">
                                 Mô tả sản phẩm
                             </label>
@@ -311,14 +258,12 @@
                                 id="mo-ta-san-pham"
                                 rows="5"
                                 maxlength="500"
-                                placeholder="Nhập đặc điểm của sản phẩm"
+                                placeholder="Nhập mô tả sản phẩm"
                             ></textarea>
-
                         </div>
 
 
                         <div class="nhom-o">
-
                             <label for="anh-san-pham">
                                 Ảnh sản phẩm
                             </label>
@@ -326,22 +271,18 @@
                             <input
                                 id="anh-san-pham"
                                 type="file"
-                                accept="image/png, image/jpeg, image/webp"
+                                accept="image/png,image/jpeg,image/webp"
                             >
 
                             <small>
-                                Khi thêm mới phải chọn ảnh.
-                                Khi sửa có thể để trống để giữ ảnh cũ.
-                                Ảnh phải nhỏ hơn 5 MB.
+                                Thêm mới phải chọn ảnh. Khi sửa có
+                                thể để trống để giữ ảnh cũ.
+                                Ảnh nhỏ hơn 5 MB.
                             </small>
-
                         </div>
 
 
-                        <!-- XEM TRƯỚC ẢNH -->
-
                         <div class="khung-xem-truoc">
-
                             <p class="nhan-xem-truoc">
                                 Xem trước ảnh
                             </p>
@@ -352,11 +293,8 @@
                                 src=""
                                 alt="Ảnh sản phẩm xem trước"
                             >
-
                         </div>
 
-
-                        <!-- THÔNG BÁO -->
 
                         <p
                             class="thong-bao"
@@ -365,57 +303,48 @@
                         ></p>
 
 
-                        <!-- NÚT LƯU -->
+                        <div class="nhom-nut-form">
 
-                        <button
-                            class="nut nut-day"
-                            type="submit"
-                        >
-                            💾 Lưu sản phẩm
-                        </button>
+                            <button
+                                class="nut nut-day"
+                                type="submit"
+                                id="nut-luu-san-pham"
+                            >
+                                💾 Lưu sản phẩm
+                            </button>
 
+                            <button
+                                class="nut nut-huy an"
+                                type="button"
+                                id="nut-huy-sua"
+                            >
+                                ✖ Hủy sửa
+                            </button>
 
-                        <!-- NÚT HỦY SỬA -->
-
-                        <button
-                            class="nut nut-huy an"
-                            type="button"
-                            id="nut-huy-sua"
-                        >
-                            ✖ Hủy sửa
-                        </button>
+                        </div>
 
                     </form>
-
                 </section>
 
 
-                <!-- ===================================
-                     6. DANH SÁCH SẢN PHẨM
-                ==================================== -->
+                <!-- DANH SÁCH SẢN PHẨM -->
 
                 <section class="the-admin">
 
                     <div class="tieu-de-the">
-
                         <span>📦</span>
 
                         <div>
                             <h2>Danh sách sản phẩm</h2>
 
                             <p>
-                                Tìm kiếm và quản lý các sản phẩm
-                                đã lưu.
+                                Tìm kiếm và quản lý sản phẩm.
                             </p>
                         </div>
-
                     </div>
 
 
-                    <!-- Ô TÌM KIẾM -->
-
                     <div class="nhom-o">
-
                         <label for="tim-san-pham">
                             Tìm kiếm sản phẩm
                         </label>
@@ -423,17 +352,13 @@
                         <input
                             id="tim-san-pham"
                             type="search"
-                            placeholder="Nhập tên sản phẩm cần tìm..."
+                            placeholder="Nhập tên sản phẩm..."
                             autocomplete="off"
                         >
-
                     </div>
 
 
-                    <!-- BỘ LỌC TRẠNG THÁI -->
-
                     <div class="nhom-o">
-
                         <label for="loc-trang-thai">
                             Lọc theo trạng thái
                         </label>
@@ -453,54 +378,41 @@
                             </option>
 
                         </select>
-
                     </div>
 
 
-                    <!-- NƠI HIỆN DANH SÁCH -->
-
                     <div id="danh-sach-quan-ly">
-
                         <p>
                             Đang tải danh sách sản phẩm...
                         </p>
-
                     </div>
 
                 </section>
 
             </div>
-
         </section>
 
     </main>
 
 
-    <!-- ===================================
-         7. CHÂN TRANG
-    ==================================== -->
+    <!-- CHÂN TRANG -->
 
     <footer class="chan-trang-admin">
-
         <p>
             Trang quản trị Bánh cốm Nguyên Ninh
         </p>
 
         <p>
-            Không chia sẻ mật khẩu quản trị
-            cho người khác.
+            Không chia sẻ mật khẩu quản trị cho người khác.
         </p>
-
     </footer>
 
 
-    <!-- ===================================
-         8. KẾT NỐI JAVASCRIPT
-    ==================================== -->
+    <!-- KẾT NỐI JAVASCRIPT -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script src="admin.js"></script>
+    <script src="admin.js?v=5"></script>
 
 </body>
 

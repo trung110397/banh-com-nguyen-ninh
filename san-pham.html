@@ -9,196 +9,268 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sản phẩm – Bánh cốm Nguyên Ninh</title>
+    <meta
+        name="description"
+        content="Danh sách sản phẩm của Bánh cốm Nguyên Ninh."
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Sản phẩm - Bánh cốm Nguyên Ninh
+    </title>
+
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
-<body style="margin: 0;">
+<body>
 
     <!-- MENU -->
 
     <nav class="menu">
 
-        <a
-            href="index.html"
-            style="color: white; text-decoration: none; font-weight: bold;"
-        >
-            Trang chủ
-        </a>
+        <div class="khung-noi-dung menu-ben-trong">
 
-        <a
-            href="san-pham.html"
-            style="color: white; text-decoration: none; font-weight: bold;"
-        >
-            Sản phẩm
-        </a>
+            <a
+                class="ten-cua-hang"
+                href="index.html"
+            >
+                🌿 Nguyên Ninh
+            </a>
 
-        <a
-            href="index.html#gio-hang"
-            style="color: white; text-decoration: none; font-weight: bold;"
-        >
-            🛒 Giỏ hàng
-        </a>
+            <ul class="danh-sach-menu">
 
-        <a
-            href="index.html#lien-he"
-            style="color: white; text-decoration: none; font-weight: bold;"
-        >
-            Liên hệ
-        </a>
+                <li>
+                    <a href="index.html">
+                        Trang chủ
+                    </a>
+                </li>
 
-        <button
-            id="nut-doi-giao-dien"
-            onclick="doiGiaoDien()"
-            aria-label="Đổi chế độ sáng tối"
-        >
-            🌙
-        </button>
+                <li>
+                    <a href="index.html#gioi-thieu">
+                        Giới thiệu
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#danh-sach-san-pham">
+                        Sản phẩm
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#gio-hang">
+                        Giỏ hàng
+                        (<span id="so-luong-gio-hang">0</span>)
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#lien-he">
+                        Liên hệ
+                    </a>
+                </li>
+
+            </ul>
+
+            <button
+                type="button"
+                id="nut-doi-giao-dien"
+                aria-label="Đổi chế độ sáng tối"
+            >
+                🌙
+            </button>
+
+        </div>
 
     </nav>
 
-    <!-- TRANG SẢN PHẨM -->
 
-    <main class="trang-san-pham">
+    <!-- ĐẦU TRANG SẢN PHẨM -->
 
-        <section class="tieu-de-san-pham">
+    <header class="dau-trang-san-pham">
 
-            <h1>Sản phẩm của chúng tôi</h1>
+        <div class="khung-noi-dung">
+
+            <span class="nhan-nho">
+                Sản phẩm của cửa hàng
+            </span>
+
+            <h1>Tất cả sản phẩm</h1>
 
             <p>
-                Những món bánh thơm ngon, phù hợp làm quà và dâng lễ.
+                Các sản phẩm đang bán của
+                Bánh cốm Nguyên Ninh.
             </p>
 
-        </section>
+            <a
+                class="nut nut-phu"
+                href="index.html"
+            >
+                ← Trở về trang chính
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
 
         <!-- DANH SÁCH SẢN PHẨM -->
 
-        <section class="luoi-san-pham">
+        <section
+            class="phan-noi-dung"
+            id="danh-sach-san-pham"
+        >
 
-            <!-- BÁNH CỐM -->
+            <div class="khung-noi-dung">
 
-            <article class="the-san-pham">
+                <h2 class="tieu-de-phan">
+                    Sản phẩm đang bán
+                </h2>
 
-                <img
-                    src="banh-com.jpg"
-                    alt="Bánh cốm Nguyên Ninh"
-                >
+                <p class="mo-ta-phan">
+                    Chọn số lượng rồi thêm sản phẩm
+                    vào giỏ hàng.
+                </p>
 
-                <div class="noi-dung-the">
 
-                    <h2>Bánh cốm Nguyên Ninh</h2>
+                <!--
+                    san-pham.js sẽ tự tải sản phẩm
+                    từ Supabase vào đây
+                -->
 
-                    <p>
-                        Bánh mềm dẻo, hương cốm thơm dịu.
-                    </p>
+                <div class="luoi-san-pham"></div>
 
-                    <p class="gia-the">
-                        Từ 60.000 đồng
-                    </p>
+
+                <div class="can-giua cach-tren">
 
                     <a
-                        href="index.html#banh-com"
-                        class="nut-xem-chi-tiet"
+                        class="nut"
+                        href="index.html#gio-hang"
                     >
-                        Xem chi tiết
+                        🛒 Xem giỏ hàng
                     </a>
 
                 </div>
 
-            </article>
+            </div>
 
-            <!-- BÁNH XU XÊ -->
+        </section>
 
-            <article class="the-san-pham">
 
-                <img
-                    src="banh-xu-xe.jpg"
-                    alt="Bánh xu xê"
-                >
+        <!-- LIÊN HỆ -->
 
-                <div class="noi-dung-the">
+        <section
+            class="phan-noi-dung nen-xanh-nhat"
+        >
 
-                    <h2>Bánh xu xê</h2>
+            <div class="khung-noi-dung">
+
+                <div class="khung-lien-he">
+
+                    <h2>Liên hệ đặt bánh</h2>
 
                     <p>
-                        Bánh mềm dẻo, phù hợp dâng lễ và làm quà.
+                        📞 Điện thoại:
+                        <strong>0985868317</strong>
                     </p>
 
-                    <p class="gia-the">
-                        60.000 đồng/10 bánh
+                    <p>
+                        📍 Giao hàng tại Hà Nội
                     </p>
 
-                    <a
-                        href="index.html#banh-xu-xe"
-                        class="nut-xem-chi-tiet"
-                    >
-                        Xem chi tiết
-                    </a>
+                    <div class="nhom-nut-anh-bia">
+
+                        <a
+                            class="nut nut-goi"
+                            href="tel:0985868317"
+                        >
+                            Gọi đặt hàng
+                        </a>
+
+                        <a
+                            class="nut nut-facebook"
+                            href="https://www.facebook.com/profile.php?id=61591610027403"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Nhắn tin Facebook
+                        </a>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
     </main>
 
+
     <!-- CHÂN TRANG -->
 
     <footer class="chan-trang">
 
-        <div class="noi-dung-chan-trang">
+        <h3>Bánh cốm Nguyên Ninh</h3>
 
-            <div>
-                <h3>Bánh cốm Nguyên Ninh</h3>
-                <p>Hương vị truyền thống Hà Nội</p>
-            </div>
+        <p>
+            Bánh thơm ngon – giao hàng tại Hà Nội
+        </p>
 
-            <div>
-                <h3>Liên hệ</h3>
-
-                <p>
-                    Điện thoại:
-                    <a href="tel:0985868317">
-                        0985868317
-                    </a>
-                </p>
-
-                <p>Giao hàng tại Hà Nội</p>
-            </div>
-
-            <div>
-                <h3>Đặt hàng</h3>
-
-                <a
-                    href="https://www.facebook.com/profile.php?id=61591610027403"
-                    target="_blank"
-                >
-                    Trang Facebook
-                </a>
-            </div>
-
-        </div>
-
-        <p class="ban-quyen">
-            © 2026 Bánh cốm Nguyên Ninh
+        <p>
+            Điện thoại:
+            <a href="tel:0985868317">
+                0985868317
+            </a>
         </p>
 
     </footer>
 
+
+    <!-- CỬA SỔ PHÓNG TO ẢNH -->
+
+    <div
+        id="cua-so-anh"
+        role="dialog"
+        aria-label="Xem ảnh sản phẩm"
+    >
+
+        <button
+            type="button"
+            id="dong-cua-so-anh"
+            aria-label="Đóng ảnh"
+        >
+            ×
+        </button>
+
+        <img
+            id="anh-phong-to"
+            src=""
+            alt="Ảnh sản phẩm phóng to"
+        >
+
+    </div>
+
+
     <!-- NÚT LÊN ĐẦU -->
 
     <button
+        type="button"
         id="nut-len-dau"
-        onclick="lenDauTrang()"
         aria-label="Lên đầu trang"
     >
         ↑
     </button>
+
+
+    <!-- KẾT NỐI JAVASCRIPT -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="san-pham.js"></script>
-    <script src="script.js"></script>
+
+    <script src="san-pham.js?v=5"></script>
+
+    <script src="script.js?v=5"></script>
 
 </body>
 

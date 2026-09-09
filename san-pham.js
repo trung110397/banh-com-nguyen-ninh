@@ -31,12 +31,14 @@ function lamSachNoiDung(noiDung) {
 
 
 // ========================================
-// 3. TẢI SẢN PHẨM TỪ SUPABASE
+// 3. TẢI SẢN PHẨM
 // ========================================
 
 async function taiSanPhamTuSupabase() {
     const luoiSanPham =
-        document.querySelector(".luoi-san-pham");
+        document.querySelector(
+            ".luoi-san-pham"
+        );
 
     if (!luoiSanPham) {
         return;
@@ -72,12 +74,24 @@ async function taiSanPhamTuSupabase() {
         return;
     }
 
+    if (!data || data.length === 0) {
+        document.dispatchEvent(
+            new CustomEvent(
+                "sanPhamDaTai"
+            )
+        );
+
+        return;
+    }
+
     data.forEach(function (sanPham) {
         const theSanPham =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
 
         theSanPham.className =
-            "the-san-pham";
+            "the-san-pham san-pham-tu-admin";
 
         const idSoLuong =
             "so-luong-admin-" +
@@ -87,7 +101,7 @@ async function taiSanPhamTuSupabase() {
             "tien-admin-" +
             sanPham.id;
 
-        const tenGioHang =
+        const tenTrongGio =
             sanPham.ten +
             " - " +
             sanPham.so_banh +
@@ -171,7 +185,7 @@ async function taiSanPhamTuSupabase() {
                         type="button"
                         class="nut nut-them-gio"
                         data-ten="${lamSachNoiDung(
-                            tenGioHang
+                            tenTrongGio
                         )}"
                         data-gia="${Number(
                             sanPham.gia
@@ -191,12 +205,17 @@ async function taiSanPhamTuSupabase() {
         );
     });
 
-    // Báo cho script.js biết sản phẩm mới đã xuất hiện
+    // Báo cho script.js kết nối các nút mới
     document.dispatchEvent(
         new CustomEvent(
             "sanPhamDaTai"
         )
     );
 }
+
+
+// ========================================
+// 4. BẮT ĐẦU TẢI
+// ========================================
 
 taiSanPhamTuSupabase();
