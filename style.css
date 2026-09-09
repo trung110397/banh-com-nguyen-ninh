@@ -912,3 +912,15 @@ body.che-do-toi {
         transform: none;
     }
 }
+/* Sửa lỗi khoảng trắng trên điện thoại */
+@media (max-width: 600px) {
+    .hieu-ung-cuon {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .hieu-ung-cuon.da-hien {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
