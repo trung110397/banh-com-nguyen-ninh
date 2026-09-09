@@ -366,13 +366,14 @@ formSanPham.addEventListener(
                 ? "Đang cập nhật sản phẩm..."
                 : "Đang thêm sản phẩm..."
         );
-
         const duLieuSanPham = {
-            ten: ten,
-            gia: gia,
-            quy_cach: quyCach,
-            mo_ta: moTa
-        };
+     ten: ten,
+     gia: gia,
+     quy_cach: quyCach,
+     mo_ta: moTa,
+     so_banh: 1
+     };
+
 
         let duongDanAnhMoi = null;
 
