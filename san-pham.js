@@ -260,8 +260,7 @@ async function taiSanPhamTuSupabase() {
         "Đang tải sản phẩm...",
         "#555555"
     );
-const { data, error } = await supabaseClient
-    .from("san_pham")
+const { data, error } = await supabaseSanPham    .from("san_pham")
     .select("*")
     .eq("dang_ban", true);
 
