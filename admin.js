@@ -366,18 +366,28 @@ formSanPham.addEventListener(
                 ? "Đang cập nhật sản phẩm..."
                 : "Đang thêm sản phẩm..."
         );
-      const duLieuSanPham = {
+    const laSanPhamHot = document
+    .getElementById("noi-bat-san-pham")
+    .checked;
+
+const thuTuHot = Number(
+    document
+        .getElementById("thu-tu-hot")
+        .value
+);
+
+const duLieuSanPham = {
     ten: ten,
     gia: gia,
     quy_cach: quyCach,
     mo_ta: moTa,
     so_banh: 1,
+    noi_bat: laSanPhamHot,
 
-    noi_bat: document
-        .getElementById("noi-bat-san-pham")
-        .checked
+    thu_tu_hot: laSanPhamHot
+        ? thuTuHot || 999
+        : null
 };
-
 
         let duongDanAnhMoi = null;
 

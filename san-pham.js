@@ -260,18 +260,10 @@ async function taiSanPhamTuSupabase() {
         "Đang tải sản phẩm...",
         "#555555"
     );
-
-    const { data, error } =
-        await supabaseSanPham
-          .from("san_pham")
-.select("*")
-.eq("dang_ban", true)
-.order("noi_bat", {
-    ascending: false
-})
-.order("ngay_tao", {
-    ascending: false
-});
+const { data, error } = await supabaseClient
+    .from("san_pham")
+    .select("*")
+    .eq("dang_ban", true);
 
     // Xóa chữ đang tải
     luoiSanPham
@@ -308,7 +300,30 @@ async function taiSanPhamTuSupabase() {
 
         return;
     }
+// Sắp xếp sản phẩm Hot lên đầu
+data.sort(function (sanPhamA, sanPhamB) {
+    const hotA = sanPhamA.noi_bat === true;
+    const hotB = sanPhamB.noi_bat === true;
 
+    // Sản phẩm Hot đứng trước sản phẩm thường
+    if (hotA !== hotB) {
+        return hotA ? -1 : 1;
+    }
+
+    // Nếu cả hai đều Hot, xếp theo số 1, 2, 3...
+    if (hotA && hotB) {
+        const thuTuA =
+            Number(sanPhamA.thu_tu_hot) || 999;
+
+        const thuTuB =
+            Number(sanPhamB.thu_tu_hot) || 999;
+
+        return thuTuA - thuTuB;
+    }
+
+    // Các sản phẩm thường giữ thứ tự hiện tại
+    return 0;
+});
     data.forEach(function (sanPham) {
         const theSanPham =
             taoTheSanPham(
