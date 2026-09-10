@@ -263,15 +263,15 @@ async function taiSanPhamTuSupabase() {
 
     const { data, error } =
         await supabaseSanPham
-            .from("san_pham")
-            .select("*")
-            .eq("dang_ban", true)
-            .order(
-                "ngay_tao",
-                {
-                    ascending: false
-                }
-            );
+          .from("san_pham")
+.select("*")
+.eq("dang_ban", true)
+.order("noi_bat", {
+    ascending: false
+})
+.order("ngay_tao", {
+    ascending: false
+});
 
     // Xóa chữ đang tải
     luoiSanPham
